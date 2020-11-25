@@ -1,0 +1,6 @@
+.flex {
+    display: flex;
+}
+.f-right {
+    justify-self: flex-end;
+}

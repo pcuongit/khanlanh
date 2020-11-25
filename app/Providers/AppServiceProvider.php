@@ -13,7 +13,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $array = [
+            \App\Repositories\Category\CategoryInterface::class =>  \App\Repositories\Category\CategoryRepository::class
+        ];
+
+        foreach ($array as $interface => $repo) {
+            $this->app->singleton($interface,$repo);
+        }
     }
 
     /**

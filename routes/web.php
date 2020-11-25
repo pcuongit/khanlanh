@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('admin.dashboard');
 });
+Route::group(['prefix' => 'adminstrator'], function () {
+    Route::get('/', 'admin\DashboardController@index')->name('adminstrator.index');
+    Route::resource('/category', 'admin\CategoryController');
+});

@@ -12,15 +12,16 @@
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('admin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('admin/css/ruang-admin.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/css/custom.css') }}" rel="stylesheet">
 </head>
 <body id="page-top">
     <div id="wrapper">
         <!-- Sidebar -->
-        @extends('layouts.admin.side_bar')
+        @include('layouts.admin.side_bar')
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <!-- TopBar -->
-                @extends('layouts.admin.top_bar')
+                @include('layouts.admin.top_bar')
                 <!-- Container Fluid-->
                 @yield('content')
             </div>
@@ -35,7 +36,7 @@
     <script src="{{asset('admin/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-    <!-- <script src="{{asset('admin/js/custom.js')}}"></script> -->
+    <script src="{{asset('admin/js/custom.js')}}"></script>
     <script src="{{asset('admin/js/ruang-admin.js')}}"></script>
     <!-- <script src="{{asset('admin/vendor/chart.js/Chart.min.js')}}"></script>
     <script src="{{asset('admin/js/demo/chart-area-demo.js')}}"></script> -->
