@@ -1,6 +1,6 @@
 <?php
-namespace App\Repositories\Category;
-interface CategoryInterface
+namespace App\Repositories\Product;
+interface ProductInterface
 {
     /**
      * Get 5 posts hot in a month the last

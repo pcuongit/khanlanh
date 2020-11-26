@@ -14,7 +14,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $array = [
-            \App\Repositories\Category\CategoryInterface::class =>  \App\Repositories\Category\CategoryRepository::class
+            \App\Repositories\Category\CategoryInterface::class =>  \App\Repositories\Category\CategoryRepository::class,
+            \App\Repositories\Product\ProductInterface::class =>  \App\Repositories\Product\ProductRepository::class
         ];
 
         foreach ($array as $interface => $repo) {

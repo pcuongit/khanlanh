@@ -4,15 +4,15 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Category\CategoryInterface;
-use App\Http\Requests\CategoryRequest;
+use App\Repositories\Product\ProductInterface;
+use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\View;
-class CategoryController extends Controller
+class ProductController extends Controller
 {
-    public $categoryRepository;
-    public function __construct(CategoryInterface $categoryRepository)
+    public $productRepository;
+    public function __construct(ProductInterface $productRepository)
     {
-        $this->categoryRepository = $categoryRepository;
+        $this->productRepository = $productRepository;
     }
     /**
      * Display a listing of the resource.
@@ -21,8 +21,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data = $this->categoryRepository->getAll();
-        return view('admin.categories.index', compact('data'));
+        $data = $this->productRepository->getAll();
+        return view('admin.products.index', compact('data'));
     }
 
     /**
@@ -88,7 +88,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $handle = $this->categoryRepository->delete($id);
+        $handle = $this->productRepository->delete($id);
         if($handle === true) {
             return response()->json([
                 "status" => 200,
@@ -101,8 +101,8 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function ajaxCreate(CategoryRequest $request) {
-        $handle = $this->categoryRepository->insert($request);
+    public function ajaxCreate(productRequest $request) {
+        $handle = $this->productRepository->insert($request);
         if($handle['status'] === true) {
             return response()->json([
                 "status" => 200,
@@ -115,8 +115,8 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function ajaxUpdate(CategoryRequest $request, $id) {
-        $handle = $this->categoryRepository->update($request, $id);
+    public function ajaxUpdate(productRequest $request, $id) {
+        $handle = $this->productRepository->update($request, $id);
         if($handle['status'] === true) {
             return response()->json([
                 "status" => 200,
@@ -130,7 +130,7 @@ class CategoryController extends Controller
     }
 
     public function ajaxRender(Request $request) {
-        $list = $this->categoryRepository->getAll();
+        $list = $this->productRepository->getAll();
         return View::make('admin.categories.render', ['data' => $list]);
     }
 }

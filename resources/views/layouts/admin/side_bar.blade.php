@@ -16,10 +16,17 @@
     <div class="sidebar-heading">
         Chức năng
     </div>
-    <li class="nav-item">
+    <li class="nav-item @if(in_array(Route::currentRouteName(), ['category.index'])){{'active'}}@endif">
         <a class="nav-link" href="{{route('category.index')}}">
             <i class="fas fa-fw fa-columns"></i>
             <span>danh mục</span>
+        </a>
+    </li>
+
+    <li class="nav-item @if(in_array(Route::currentRouteName(), ['product.index'])){{'active'}}@endif">
+        <a class="nav-link" href="{{route('product.index')}}">
+            <i class="fas fa-fw fa-box"></i>
+            <span>sản phẩm</span>
         </a>
     </li>
     <!-- <li class="nav-item">

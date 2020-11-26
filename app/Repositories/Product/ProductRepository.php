@@ -1,13 +1,14 @@
 <?php
-namespace App\Repositories\Category;
+namespace App\Repositories\Product;
 
 use App\Repositories\EloquentRepository;
-use App\Repositories\Category\CategoryInterface;
+use App\Repositories\Product\ProductInterface;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Config as Config;
-class CategoryRepository extends EloquentRepository implements CategoryInterface
+class ProductRepository extends EloquentRepository implements ProductInterface
+
 {
     /**
      * get model
@@ -15,7 +16,7 @@ class CategoryRepository extends EloquentRepository implements CategoryInterface
      */
     public function getModel()
     {
-        return \App\Models\Category::class;
+        return \App\Models\Product::class;
     }
 
     /**

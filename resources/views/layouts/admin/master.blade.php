@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{asset('admin/img/logo/logo.png')}}" rel="icon">
     <title>@yield('title')</title>
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -25,6 +26,7 @@
                 <!-- Container Fluid-->
                 @yield('content')
             </div>
+            @include('layouts.admin.footer')
         </div>
     </div>
 
@@ -33,11 +35,12 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <script src="{{asset('admin/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script src="{{asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
     <script src="{{asset('admin/js/custom.js')}}"></script>
     <script src="{{asset('admin/js/ruang-admin.js')}}"></script>
+    @yield('scripts')
     <!-- <script src="{{asset('admin/vendor/chart.js/Chart.min.js')}}"></script>
     <script src="{{asset('admin/js/demo/chart-area-demo.js')}}"></script> -->
 </body>

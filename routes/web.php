@@ -19,4 +19,11 @@ Route::get('/', function () {
 Route::group(['prefix' => 'adminstrator'], function () {
     Route::get('/', 'admin\DashboardController@index')->name('adminstrator.index');
     Route::resource('/category', 'admin\CategoryController');
+    Route::resource('/product', 'admin\ProductController');
+    Route::group(['prefix' => 'ajax'], function () {
+        Route::post('/category/create', 'admin\CategoryController@ajaxCreate')->name('ajax.category.create');
+        Route::patch('/category/update/{id}', 'admin\CategoryController@ajaxUpdate')->name('ajax.category.update');
+        Route::get('/category/render', 'admin\CategoryController@ajaxRender')->name('ajax.category.render');
+        Route::delete('/category/destroy/{id}', 'admin\CategoryController@destroy')->name('ajax.category.destroy');
+    });
 });
