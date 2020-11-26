@@ -21,9 +21,17 @@ Route::group(['prefix' => 'adminstrator'], function () {
     Route::resource('/category', 'admin\CategoryController');
     Route::resource('/product', 'admin\ProductController');
     Route::group(['prefix' => 'ajax'], function () {
-        Route::post('/category/create', 'admin\CategoryController@ajaxCreate')->name('ajax.category.create');
-        Route::patch('/category/update/{id}', 'admin\CategoryController@ajaxUpdate')->name('ajax.category.update');
-        Route::get('/category/render', 'admin\CategoryController@ajaxRender')->name('ajax.category.render');
-        Route::delete('/category/destroy/{id}', 'admin\CategoryController@destroy')->name('ajax.category.destroy');
+        Route::group(['prefix' => 'category'], function () {
+            Route::post('create', 'admin\CategoryController@ajaxCreate')->name('ajax.category.create');
+            Route::patch('update/{id}', 'admin\CategoryController@ajaxUpdate')->name('ajax.category.update');
+            Route::get('render', 'admin\CategoryController@ajaxRender')->name('ajax.category.render');
+            Route::delete('destroy/{id}', 'admin\CategoryController@destroy')->name('ajax.category.destroy');
+        });
+        Route::group(['prefix' => 'product'], function () {
+            Route::post('create', 'admin\ProductController@ajaxCreate')->name('ajax.product.create');
+            Route::patch('update/{id}', 'admin\ProductController@ajaxUpdate')->name('ajax.product.update');
+            Route::get('render', 'admin\ProductController@ajaxRender')->name('ajax.product.render');
+            Route::delete('destroy/{id}', 'admin\ProductController@destroy')->name('ajax.product.destroy');
+        });
     });
 });

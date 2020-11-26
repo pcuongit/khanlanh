@@ -26,7 +26,7 @@
                         <div class="form-group">
                             <label for="price">giá</label>
                             <div class="input-group mb-3">
-                                <input type="number" class="form-control" name="price"
+                                <input type="number" class="form-control" name="price" min="1000"
                                     aria-label="Amount (to the nearest dollar)">
                                 <div class="input-group-append">
                                     <span class="input-group-text">VND</span>
@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label for="discount">giá cuối cùng</label>
                             <div class="input-group mb-3">
-                                <input type="number" class="form-control" disabled>
+                                <input type="number" class="form-control" disabled value id="final_amount">
                                 <div class="input-group-append">
                                     <span class="input-group-text">VND</span>
                                 </div>

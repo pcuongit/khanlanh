@@ -30,7 +30,7 @@ class ProductRepository extends EloquentRepository implements ProductInterface
 
     public function insert($request)
     {
-        $rq = $request->only(['name_cate', 'image_url']);
+        $rq = $request->only(['name', 'price', 'discount', 'description', 'image_url']);
         $pathImg = null;
         $save_path = public_path(Config::get('constant.save_path'));
         if($request->hasFile('image_url')) {
@@ -44,8 +44,16 @@ class ProductRepository extends EloquentRepository implements ProductInterface
             $pathImg = Config::get('constant.save_path').$filename;
             $image_resize->save($save_path.$filename);
         }
+        $final_amount = $rq['price'] - round(($rq['price'] * $rq['discount'])/100);
         try {
-            $this->_model::insert(['name' => $rq['name_cate'], 'image_url' => $pathImg]);
+            $this->_model::insert([
+                'name' => $rq['name'],
+                'image_url' => $pathImg,
+                'price' => $rq['price'],
+                'discount' => $rq['discount'],
+                'final_amount' => $final_amount,
+                'description' => $rq['description'],
+                ]);
             return [
                 "status" => true,
                 "messages" => 'success',

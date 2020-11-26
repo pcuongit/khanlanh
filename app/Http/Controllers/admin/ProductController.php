@@ -101,7 +101,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function ajaxCreate(productRequest $request) {
+    public function ajaxCreate(ProductRequest $request) {
         $handle = $this->productRepository->insert($request);
         if($handle['status'] === true) {
             return response()->json([
@@ -115,7 +115,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function ajaxUpdate(productRequest $request, $id) {
+    public function ajaxUpdate(ProductRequest $request, $id) {
         $handle = $this->productRepository->update($request, $id);
         if($handle['status'] === true) {
             return response()->json([

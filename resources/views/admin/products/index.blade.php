@@ -30,25 +30,31 @@
 @endsection
 @section('scripts')
 <script>
+function calculatePriceAfterDiscount() {
+    var discount = $("input[name='discount']").val() ?? 0;
+    var price = $("input[name='price']").val() ?? 0;
+    var final_amount = price - Math.round((discount * price) / 100);
+    $("#final_amount").val(final_amount);
+}
 // function successAnimation(message) {
 //     $("#success>.msg").text(message);
 //     $("#success").slideDown("slow");
 // }
 
-// function animateSave(object) {
-//     $("#btn_save>.text").text("Lưu");
-//     $("#loading-spinner").addClass("hidden");
-//     if (object.status === 200) {
-//         successAnimation(object.message);
-//         $('#btn_create').toggleClass('hidden');
-//         $("#form_create").hide();
-//         $("#box_button_create").toggleClass("mb-4")
-//         $("#box_button_create>#bg_box").toggleClass("card")
-//         resetForm();
-//         autoCloseAlert('success');
-//         search();
-//     }
-// }
+function animateSave(object) {
+    $("#btn_save>.text").text("Lưu");
+    $("#loading-spinner").addClass("hidden");
+    if (object.status === 200) {
+        successAnimation(object.message);
+        $('#btn_create').toggleClass('hidden');
+        $("#form_create").hide();
+        $("#box_button_create").toggleClass("mb-4")
+        $("#box_button_create>#bg_box").toggleClass("card")
+        resetForm();
+        autoCloseAlert('success');
+        search();
+    }
+}
 
 // function search(text) {
 //     setupAjax();
@@ -183,7 +189,10 @@ $(window).on('load', function() {
         $("#btn_save>.text").text("");
         $("#loading-spinner").removeClass("hidden");
         var formData = new FormData();
-        formData.append('name_cate', $('input[name="name_cate"]').val());
+        formData.append('name', $('input[name="name"]').val());
+        formData.append('price', $('input[name="price"]').val());
+        formData.append('discount', $('input[name="discount"]').val());
+        formData.append('description', $('[name="description"]').text());
         formData.append('_method', 'POST');
         if ($("input[type=file]")[0].files[0] !== undefined) {
             formData.append('image_url', $(
@@ -191,7 +200,7 @@ $(window).on('load', function() {
         }
         setupAjax();
         $.ajax({
-            url: 'ajax/category/create',
+            url: 'ajax/product/create',
             type: 'POST',
             data: formData,
             processData: false,
@@ -200,9 +209,6 @@ $(window).on('load', function() {
             timeout: 600000,
             success: function(result, status, xhr) {
                 animateSave(result);
-                console.log("🚀 ~ file: index.blade.php ~ line 113 ~ $ ~ status", status)
-                console.log("🚀 ~ file: index.blade.php ~ line 113 ~ $ ~ xhr", xhr)
-                console.log("🚀 ~ file: index.blade.php ~ line 111 ~ $ ~ data", result)
             },
             error: function(xhr, status, error) {
                 animateSave({
@@ -216,10 +222,11 @@ $(window).on('load', function() {
                     $(".custom-file-label").removeClass("has-error");
                     for (const [key, value] of Object.entries(errorsArr)) {
                         $("#errors>.msg").append("- " + value + "<br>");
-                        $(`input[name="${key}"]`).addClass("has-error");
+                        $(`[name="${key}"]`).addClass("has-error");
                         if (key == 'image_url') {
                             $(".custom-file-label").addClass("has-error");
                         }
+
                         console.log(`${key}: ${value}`);
                     }
                     if (!$("#errors").first().is(":hidden")) {
@@ -234,6 +241,12 @@ $(window).on('load', function() {
 
         return false;
     });
+    $("input[name='discount']").on("keyup", function() {
+        calculatePriceAfterDiscount();
+    })
+    $("input[name='discount']").on("keyup", function() {
+        calculatePriceAfterDiscount();
+    })
 
     $("#btn_confirm_delete").on("click", function() {
         destroy($("input[name=id_delete]").val())
