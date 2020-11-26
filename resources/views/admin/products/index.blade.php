@@ -26,6 +26,25 @@
         </div>
     </div>
     <!--Row-->
+    <!-- Modal Edit -->
+    <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog mw-90" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabelLogout">chỉnh sửa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Hủy</button>
+                    <a href="javascript:void(0)" class="btn btn-primary" id="btn_update" data-product_id="">Cập Nhật</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 @section('scripts')
@@ -36,10 +55,11 @@ function calculatePriceAfterDiscount() {
     var final_amount = price - Math.round((discount * price) / 100);
     $("#final_amount").val(final_amount);
 }
-// function successAnimation(message) {
-//     $("#success>.msg").text(message);
-//     $("#success").slideDown("slow");
-// }
+
+function successAnimation(message) {
+    $("#success>.msg").text(message);
+    $("#success").slideDown("slow");
+}
 
 function animateSave(object) {
     $("#btn_save>.text").text("Lưu");
@@ -56,27 +76,36 @@ function animateSave(object) {
     }
 }
 
-// function search(text) {
-//     setupAjax();
-//     $.ajax({
-//         // url: 'ajax/category/render?search=' + (text) ? text : '',
-//         url: 'ajax/category/render',
-//         type: 'GET',
-//         timeout: 600000,
-//         success: function(result, status, xhr) {
-//             $(".table-responsive").html(result);
-//         },
-//         error: function(xhr, status, error) {},
-//     });
-//     return false;
-// }
+function search(text) {
+    setupAjax();
+    $.ajax({
+        // url: 'ajax/category/render?search=' + (text) ? text : '',
+        url: 'ajax/product/render',
+        type: 'GET',
+        timeout: 600000,
+        success: function(result, status, xhr) {
+            $(".table-responsive").html(result);
+        },
+        error: function(xhr, status, error) {},
+    });
+    return false;
+}
 
-// function editCate(event, id) {
-//     var _this = event.target;
-//     hiddenBtn($(".form_" + id));
-//     $(".text_default_" + id).toggleClass("hidden");
-//     $(".input_edit_" + id).toggleClass("hidden");
-// }
+function editProduct(event, id) {
+    $("#btn_update").data("product_id", id);
+    setupAjax();
+    $.ajax({
+        url: 'ajax/product/render_edit/' + id,
+        type: 'GET',
+        timeout: 600000,
+        success: function(result, status, xhr) {
+            $("#EditModal .modal-body").html(result);
+            $("#EditModal").modal("show");
+        },
+        error: function(xhr, status, error) {},
+    });
+    return false;
+}
 
 // function updateCate(event, id) {
 //     var _this = $(".form_" + id).closest("tr");
@@ -147,31 +176,31 @@ function animateSave(object) {
 //     $(".input_edit_" + id).toggleClass("hidden");
 // }
 
-// function deleteCate(id) {
-//     $("input[name=id_delete]").val(id);
-//     $("#deleteModal").modal();
-// }
+function deleteProduct(id) {
+    $("input[name=id_delete]").val(id);
+    $("#deleteModal").modal();
+}
 
-// function destroy(id) {
-//     setupAjax();
-//     $.ajax({
-//         url: 'ajax/category/destroy/' + id,
-//         type: 'DELETE',
-//         timeout: 600000,
-//         success: function(result, status, xhr) {
-//             if (result.status === 200) {
-//                 $("input[name=id_delete]").val();
-//                 $("#deleteModal").modal('hide');
-//                 search()
-//             }
-//         },
-//         error: function(xhr, status, error) {
-//             $("input[name=id_delete]").val();
-//             $("#deleteModal").modal('hide');
-//         },
-//     });
-//     return false;
-// }
+function destroy(id) {
+    setupAjax();
+    $.ajax({
+        url: 'ajax/product/destroy/' + id,
+        type: 'DELETE',
+        timeout: 600000,
+        success: function(result, status, xhr) {
+            if (result.status === 200) {
+                $("input[name=id_delete]").val();
+                $("#deleteModal").modal('hide');
+                search()
+            }
+        },
+        error: function(xhr, status, error) {
+            $("input[name=id_delete]").val();
+            $("#deleteModal").modal('hide');
+        },
+    });
+    return false;
+}
 
 $(window).on('load', function() {
     $('#btn_create').on('click', function() {
@@ -192,7 +221,8 @@ $(window).on('load', function() {
         formData.append('name', $('input[name="name"]').val());
         formData.append('price', $('input[name="price"]').val());
         formData.append('discount', $('input[name="discount"]').val());
-        formData.append('description', $('[name="description"]').text());
+        formData.append('id_category', $('select[name="id_category"]').val());
+        formData.append('description', $('textarea[name="description"]').val());
         formData.append('_method', 'POST');
         if ($("input[type=file]")[0].files[0] !== undefined) {
             formData.append('image_url', $(
@@ -217,14 +247,16 @@ $(window).on('load', function() {
                 });
                 if (xhr.status === 422) {
                     var errorsArr = xhr.responseJSON.errors;
-                    $("#errors>.msg").html("");
-                    $("input").removeClass("has-error")
-                    $(".custom-file-label").removeClass("has-error");
+                    $("#errors>.msg").html("")
+                    $("input").removeClass("is-invalid")
+                    $("textarea").removeClass("is-invalid").addClass("is-valid")
+                    $("input:not([readonly])").addClass("is-valid")
+                    $(".custom-file-label").removeClass("is-invalid")
                     for (const [key, value] of Object.entries(errorsArr)) {
                         $("#errors>.msg").append("- " + value + "<br>");
-                        $(`[name="${key}"]`).addClass("has-error");
+                        $(`[name="${key}"]`).addClass("is-invalid");
                         if (key == 'image_url') {
-                            $(".custom-file-label").addClass("has-error");
+                            $(".custom-file-label").addClass("is-invalid");
                         }
 
                         console.log(`${key}: ${value}`);

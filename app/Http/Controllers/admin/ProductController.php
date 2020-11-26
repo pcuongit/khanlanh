@@ -5,14 +5,17 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Product\ProductInterface;
+use App\Repositories\Category\CategoryInterface;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\View;
 class ProductController extends Controller
 {
     public $productRepository;
-    public function __construct(ProductInterface $productRepository)
+    public $cateRepository;
+    public function __construct(ProductInterface $productRepository, CategoryInterface $cateRepository)
     {
         $this->productRepository = $productRepository;
+        $this->cateRepository = $cateRepository;
     }
     /**
      * Display a listing of the resource.
@@ -22,7 +25,8 @@ class ProductController extends Controller
     public function index()
     {
         $data = $this->productRepository->getAll();
-        return view('admin.products.index', compact('data'));
+        $listCate = $this->cateRepository->getAll();
+        return view('admin.products.index', compact('data', 'listCate'));
     }
 
     /**
@@ -131,6 +135,12 @@ class ProductController extends Controller
 
     public function ajaxRender(Request $request) {
         $list = $this->productRepository->getAll();
-        return View::make('admin.categories.render', ['data' => $list]);
+        return View::make('admin.products.render', ['data' => $list]);
+    }
+
+    public function ajaxRenderEdit($id) {
+        $listCate = $this->cateRepository->getAll();
+        $product = $this->productRepository->findProduct($id);
+        return View::make('admin.products.render_edit', ['product' => $product, 'listCate' => $listCate]);
     }
 }

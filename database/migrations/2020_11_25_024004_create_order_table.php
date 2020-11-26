@@ -22,6 +22,7 @@ class CreateOrderTable extends Migration
             $table->string('email');
             $table->string('address_1');
             $table->string('address_2');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

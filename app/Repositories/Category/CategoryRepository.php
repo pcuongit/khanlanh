@@ -44,7 +44,7 @@ class CategoryRepository extends EloquentRepository implements CategoryInterface
             $image_resize->save($save_path.$filename);
         }
         try {
-            $this->_model::insert(['name' => $rq['name_cate'], 'image_url' => $pathImg]);
+            $this->_model::create(['name' => $rq['name_cate'], 'image_url' => $pathImg]);
             return [
                 "status" => true,
                 "messages" => 'success',

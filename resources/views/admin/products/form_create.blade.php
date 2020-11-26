@@ -9,7 +9,6 @@
                     <form class="percent-100 hidden" method="post" enctype="multipart/form-data" id="form_create">
                         @csrf
                         <div class="flex percent-100 f-right">
-
                             <button type="button" class="btn btn-success mb-1 w-100 " id="btn_save">
                                 <span class="text">Lưu</span>
                                 <div class="loadingio-spinner-rolling-tpm40fc0lgn hidden" id="loading-spinner">
@@ -18,6 +17,14 @@
                                     </div>
                                 </div>
                             </button>
+                        </div>
+                        <div class="form-group">
+                            <label for="discount">danh mục</label>
+                            <select class="form-control" name="id_category">
+                                @foreach($listCate as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="name">Tên sản phẩm</label>
@@ -43,10 +50,11 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="discount">giá cuối cùng</label>
                             <div class="input-group mb-3">
-                                <input type="number" class="form-control" disabled value id="final_amount">
+                                <input type="number" class="form-control" readonly value id="final_amount">
                                 <div class="input-group-append">
                                     <span class="input-group-text">VND</span>
                                 </div>

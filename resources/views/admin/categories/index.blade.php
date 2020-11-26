@@ -141,11 +141,12 @@ function updateCate(event, id) {
             if (xhr.status === 422) {
                 var errorsArr = xhr.responseJSON.errors;
                 $("#errors>.msg").html("");
-                _this.find("input").removeClass("has-error")
-                _this.find(".custom-file-label").removeClass("has-error");
+                _this.find("input").removeClass("is-invalid")
+                _this.find("input:not([readonly])").addClass("is-valid")
+                _this.find(".custom-file-label").removeClass("is-invalid");
                 for (const [key, value] of Object.entries(errorsArr)) {
                     $("#errors>.msg").append("- " + value + "<br>");
-                    _this.find(`input[name="${key}"]`).addClass("has-error");
+                    _this.find(`input[name="${key}"]`).addClass("is-invalid");
                     if (key == 'image_url') {
                         _this.find(".custom-file-label").addClass("has-error");
                     }
@@ -251,13 +252,14 @@ $(window).on('load', function() {
                 if (xhr.status === 422) {
                     var errorsArr = xhr.responseJSON.errors;
                     $("#errors>.msg").html("");
-                    $("input").removeClass("has-error")
                     $(".custom-file-label").removeClass("has-error");
+                    $(`input`).addClass("is-valid");
+                    $("input").removeClass("is-invalid")
                     for (const [key, value] of Object.entries(errorsArr)) {
                         $("#errors>.msg").append("- " + value + "<br>");
-                        $(`input[name="${key}"]`).addClass("has-error");
+                        $(`input[name="${key}"]`).addClass("is-invalid");
                         if (key == 'image_url') {
-                            $(".custom-file-label").addClass("has-error");
+                            $(".custom-file-label").addClass("is-invalid");
                         }
                         console.log(`${key}: ${value}`);
                     }

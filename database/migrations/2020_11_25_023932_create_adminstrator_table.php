@@ -17,6 +17,7 @@ class CreateAdminstratorTable extends Migration
             $table->id();
             $table->string('username', 50)->index();
             $table->string('password');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

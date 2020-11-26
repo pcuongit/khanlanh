@@ -24,7 +24,7 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         $request = $this->request;
-        $rule = ['name' => 'required','price' => 'required', 'discount' => 'required', 'description' => 'required'];
+        $rule = ['id_category' => 'required', 'name' => 'required','price' => 'required', 'discount' => 'required', 'description' => 'required'];
         if($request->all()['_method'] === 'POST') {
             $rule += ['image_url' => 'required'];
         } else {
@@ -36,6 +36,7 @@ class ProductRequest extends FormRequest
 
     public function messages() {
         return [
+            'id_category.required' => 'vui lòng chọn danh mục',
             'name.required' => 'vui lòng nhập tên sản phẩm',
             'price.required' => 'vui lòng nhập giá gốc',
             'discount.required' => 'vui lòng nhập % khuyến mãi',

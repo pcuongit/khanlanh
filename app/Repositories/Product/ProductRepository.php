@@ -30,7 +30,7 @@ class ProductRepository extends EloquentRepository implements ProductInterface
 
     public function insert($request)
     {
-        $rq = $request->only(['name', 'price', 'discount', 'description', 'image_url']);
+        $rq = $request->only(['name', 'price', 'discount', 'description', 'image_url', 'id_category']);
         $pathImg = null;
         $save_path = public_path(Config::get('constant.save_path'));
         if($request->hasFile('image_url')) {
@@ -46,13 +46,14 @@ class ProductRepository extends EloquentRepository implements ProductInterface
         }
         $final_amount = $rq['price'] - round(($rq['price'] * $rq['discount'])/100);
         try {
-            $this->_model::insert([
+            $this->_model::create([
                 'name' => $rq['name'],
                 'image_url' => $pathImg,
                 'price' => $rq['price'],
-                'discount' => $rq['discount'],
+                'discount_percent' => $rq['discount'],
                 'final_amount' => $final_amount,
                 'description' => $rq['description'],
+                'id_category' => $rq['id_category']
                 ]);
             return [
                 "status" => true,
@@ -110,5 +111,9 @@ class ProductRepository extends EloquentRepository implements ProductInterface
                 "messages" => $e->getMessages
             ];
         };
+    }
+
+    public function findProduct($id) {
+        return $this->_model::find($id);
     }
 }

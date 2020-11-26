@@ -86,3 +86,6 @@
 body {
     font-family: "Times New Roman", Times, serif;
 }
+.mw-90 {
+    max-width: 90% !important;
+}

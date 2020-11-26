@@ -32,6 +32,7 @@ Route::group(['prefix' => 'adminstrator'], function () {
             Route::patch('update/{id}', 'admin\ProductController@ajaxUpdate')->name('ajax.product.update');
             Route::get('render', 'admin\ProductController@ajaxRender')->name('ajax.product.render');
             Route::delete('destroy/{id}', 'admin\ProductController@destroy')->name('ajax.product.destroy');
+            Route::get('render_edit/{id}', 'admin\ProductController@ajaxRenderEdit')->name('ajax.product.render_edit');
         });
     });
 });

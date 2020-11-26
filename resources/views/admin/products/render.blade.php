@@ -8,7 +8,6 @@
             <th>giá gốc</th>
             <th>khuyến mãi</th>
             <th>giá cuối cùng</th>
-            <th>mô tả</th>
             <th>hành động</th>
         </tr>
     </thead>
@@ -22,39 +21,28 @@
                 {{ $value->id }}
             </td>
             <td>
-                <span class="text_default_{{$value->id}}">{{ $value->name }}</span>
-                <input type="text" name="name_cate" class="form-control hidden input_edit_{{$value->id}}"
-                    value={{ $value->name }} />
+                {{ $value->name }}
             </td>
             <td>
-                <div class="row">
-                    <span class="design"
-                        style="background:url({{asset($value->image_url)}}) no-repeat center center;"></span>
-                </div>
-                <div class="row hidden input_edit_{{$value->id}}">
-                    <div class="custom-file w-250 mt-2">
-                        <input type="file" class="custom-file-input" id="customFile" name="image_url"
-                            accept="image/png,image/jpg,image/svg">
-                        <label class="custom-file-label" for="customFile">chọn ảnh</label>
-                    </div>
-                </div>
+                <span class="design"
+                    style="background:url({{asset($value->image_url)}}) no-repeat center center;"></span>
+            </td>
+            <td>
+                {{ $value->price }} VND
+            </td>
+            <td>
+                {{ $value->discount_percent }} %
+            </td>
+            <td>
+                {{ $value->final_amount }} VND
             </td>
             <td>
                 <div class="flex">
-                    <a href="javascript:void(0)" class="btn btn-success btn_update mr-2 hidden"
-                        onClick="updateCate(event, {{ $value->id }})">
-                        <i class="fas fa-check"></i>
-                    </a>
-                    <a href="javascript:void(0)" class="btn btn-warning btn_cancel mr-2 hidden"
-                        onClick="cancelCate(event, {{ $value->id }})">
-                        <i class="fas fa-times"></i>
-                    </a>
-                    <a href="javascript:void(0)" class="btn btn-primary mr-2 btn_edit"
-                        onClick="editCate(event, {{ $value->id }})">
+                    <a href="javascript:void(0)" class="btn btn-primary mr-2"
+                        onClick="editProduct(event, {{ $value->id }})">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a href="javascript:void(0)" class="btn btn-danger btn_delete"
-                        onClick="deleteCate({{ $value->id }})">
+                    <a href="javascript:void(0)" class="btn btn-danger" onClick="deleteProduct({{ $value->id }})">
                         <i class="fas fa-trash"></i>
                     </a>
                 </div>
@@ -63,7 +51,7 @@
         @endforeach
         @else
         <tr>
-            <td colspan="8" class="text-center">
+            <td colspan="7" class="text-center">
                 không có dữ liệu
             </td>
         </tr>
