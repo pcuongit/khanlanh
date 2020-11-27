@@ -47,7 +47,7 @@
                     @endforeach
             </td>
             <td>
-                {{ $value->total_bill }} VND
+                {{ $value->total_bill }} VNĐ
             </td>
             <td>
                 <a href="javascript:void(0)" class="btn btn-primary pl-3 pr-3"

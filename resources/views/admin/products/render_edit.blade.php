@@ -33,7 +33,7 @@
                 onKeyUp="calculatePriceAfterDiscount(event)" aria-label="Amount (to the nearest dollar)"
                 value="{{ $product->price }}">
             <div class="input-group-append">
-                <span class="input-group-text">VND</span>
+                <span class="input-group-text">VNĐ</span>
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@
                 value="{{ $product->price - round(($product->price * $product->discount_percent)/100) }}"
                 id="final_amount">
             <div class="input-group-append">
-                <span class="input-group-text">VND</span>
+                <span class="input-group-text">VNĐ</span>
             </div>
         </div>
     </div>

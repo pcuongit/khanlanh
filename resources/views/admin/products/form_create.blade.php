@@ -39,7 +39,7 @@
                                     onKeyUp="calculatePriceAfterDiscount(event)"
                                     aria-label="Amount (to the nearest dollar)">
                                 <div class="input-group-append">
-                                    <span class="input-group-text">VND</span>
+                                    <span class="input-group-text">VNĐ</span>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                             <div class="input-group mb-3">
                                 <input type="number" class="form-control" readonly value id="final_amount">
                                 <div class="input-group-append">
-                                    <span class="input-group-text">VND</span>
+                                    <span class="input-group-text">VNĐ</span>
                                 </div>
                             </div>
                         </div>

@@ -28,13 +28,13 @@
                     style="background:url({{asset($value->image_url)}}) no-repeat center center;"></span>
             </td>
             <td>
-                {{ $value->price }} VND
+                {{ $value->price }} VNĐ
             </td>
             <td>
                 {{ $value->discount_percent }} %
             </td>
             <td>
-                {{ $value->final_amount }} VND
+                {{ $value->final_amount }} VNĐ
             </td>
             <td>
                 <div class="flex">

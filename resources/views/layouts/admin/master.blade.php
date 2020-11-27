@@ -41,7 +41,7 @@
     <script src="{{asset('admin/js/custom.js')}}"></script>
     <script src="{{asset('admin/js/ruang-admin.js')}}"></script>
     @yield('scripts')
-    <!-- <script src="{{asset('admin/vendor/chart.js/Chart.min.js')}}"></script>
-    <script src="{{asset('admin/js/demo/chart-area-demo.js')}}"></script> -->
+    <script src="{{asset('admin/vendor/chart.js/Chart.min.js')}}"></script>
+    <script src="{{asset('admin/js/demo/chart-area-demo.js')}}"></script>
 </body>
 </html>
