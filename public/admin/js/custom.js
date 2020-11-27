@@ -1,6 +1,8 @@
-function resetForm() {
-    $("input").val("");
-    $(".custom-file-label").text("");
+function resetForm(id) {
+    $("#"+id).find("input").val("");
+    $("#"+id).find("textarea").val("");
+    $("#"+id).find("select").val("");
+    $("#"+id).find(".custom-file-label").text("");
 }
 function autoCloseAlert(id) {
     if (!$('#' + id).first().is(":hidden")) {
@@ -9,6 +11,7 @@ function autoCloseAlert(id) {
         }, 2000)
     }
 }
+
 function setupAjax() {
     $.ajaxSetup({
         headers: {
@@ -17,26 +20,26 @@ function setupAjax() {
     });
 }
 
+function loadFile(event, id) {
+    var _this =  $(event.target).parent().find('.custom-file-label');
+    _this.text(event.target.files[0].name);
+    _this.removeClass('is-invalid');
+    if(id) {
+        var output = _this.closest(".form-group").find("#" + id);
+        output.attr("src", URL.createObjectURL(event.target.files[0]));
+        output.on('load', function() {
+            URL.revokeObjectURL(output.attr("src")); // free memory
+        })
+    }
+}
+function closeAlert(event) {
+    var _this = $(event.target).closest(".alert");
+    if(!_this.first().is(":hidden")) {
+        _this.slideUp("slow");
+    }    
+}
 $(window).on('load', function() {
-    $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
-        $("body").toggleClass("sidebar-toggled");
-        $(".sidebar").toggleClass("toggled");
-        if ($(".sidebar").hasClass("toggled")) {
-        $('.sidebar .collapse').collapse('hide');
-        };
-    });
-    $("#close-alert").on('click', function(){
-        if(!$(this).parent().first().is(":hidden")) {
-            $(this).parent().slideUp("slow");
-        }
-    })
     $("input").on('keyup', function() {
-        $(this).removeClass('has-error');
+        $(this).removeClass('is-invalid');
     })
-    $("input[type='file']").on('change', function() {
-        var _this =  $(this).parent().find('.custom-file-label');
-        _this.text($(this)[0].files[0].name);
-        _this.removeClass('has-error');
-    })
-    
 });

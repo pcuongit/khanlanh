@@ -57,7 +57,7 @@ class ProductRepository extends EloquentRepository implements ProductInterface
                 ]);
             return [
                 "status" => true,
-                "messages" => 'success',
+                "messages" => 'tạo mới thành công',
             ];
         } catch (Exception $e) {
             unlink($pathImg);
@@ -80,7 +80,7 @@ class ProductRepository extends EloquentRepository implements ProductInterface
 
     public function update($request, $id)
     {
-        $rq = $request->only(['name_cate', 'image_url']);
+        $rq = $request->only(['name', 'price', 'discount', 'description', 'image_url', 'id_category']);
         $pathImg = null;
         $save_path = public_path(Config::get('constant.save_path'));
         $cate = $this->_model::where('id', $id)->first();
@@ -97,12 +97,20 @@ class ProductRepository extends EloquentRepository implements ProductInterface
             unlink($cate->image_url);
         }
         try {
-            $arrValue = ['name' => $rq['name_cate']];
+            $final_amount = $rq['price'] - round(($rq['price'] * $rq['discount'])/100);
+            $arrValue = [
+                'name' => $rq['name'],
+                'price' => $rq['price'],
+                'discount_percent' => $rq['discount'],
+                'final_amount' => $final_amount,
+                'description' => $rq['description'],
+                'id_category' => $rq['id_category']
+                ];
             if($pathImg) $arrValue += ['image_url' => $pathImg];
             $this->_model::where('id', $id)->update($arrValue);
             return [
                 "status" => true,
-                "messages" => 'success',
+                "messages" => 'cập nhật thành công',
             ];
         } catch (Exception $e) {
             unlink($pathImg);

@@ -5,9 +5,9 @@
             <th>ID</th>
             <th>Tên sản phẩm</th>
             <th>ảnh</th>
-            <th>giá gốc</th>
-            <th>khuyến mãi</th>
-            <th>giá cuối cùng</th>
+            <th class="w-250">giá gốc</th>
+            <th class="w-250">khuyến mãi</th>
+            <th class="w-250">giá cuối cùng</th>
             <th>hành động</th>
         </tr>
     </thead>

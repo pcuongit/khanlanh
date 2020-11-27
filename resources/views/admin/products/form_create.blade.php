@@ -9,7 +9,7 @@
                     <form class="percent-100 hidden" method="post" enctype="multipart/form-data" id="form_create">
                         @csrf
                         <div class="flex percent-100 f-right">
-                            <button type="button" class="btn btn-success mb-1 w-100 " id="btn_save">
+                            <button type="button" class="btn btn-success mb-1 w-100 hidden" id="btn_save">
                                 <span class="text">Lưu</span>
                                 <div class="loadingio-spinner-rolling-tpm40fc0lgn hidden" id="loading-spinner">
                                     <div class="ldio-nr71hfyg91o">
@@ -17,6 +17,8 @@
                                     </div>
                                 </div>
                             </button>
+                            <button type="button" class="btn btn-warning ml-1 mb-1 w-100 hidden"
+                                id="btn_cancel_form">Hủy</button>
                         </div>
                         <div class="form-group">
                             <label for="discount">danh mục</label>
@@ -34,6 +36,7 @@
                             <label for="price">giá</label>
                             <div class="input-group mb-3">
                                 <input type="number" class="form-control" name="price" min="1000"
+                                    onKeyUp="calculatePriceAfterDiscount(event)"
                                     aria-label="Amount (to the nearest dollar)">
                                 <div class="input-group-append">
                                     <span class="input-group-text">VND</span>
@@ -44,6 +47,7 @@
                             <label for="discount">khuyến mãi</label>
                             <div class="input-group mb-3">
                                 <input type="number" class="form-control" name="discount" max="100" min="0"
+                                    onKeyUp="calculatePriceAfterDiscount(event)"
                                     aria-label="Amount (to the nearest dollar)">
                                 <div class="input-group-append">
                                     <span class="input-group-text">%</span>
@@ -66,9 +70,10 @@
                         </div>
                         <div class="form-group">
                             <label for="image_url">Ảnh</label>
+                            <img class="design mb-3" alt="" id="preview">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="customFile" name="image_url"
-                                    accept="image/png,image/jpg,image/svg">
+                                    accept="image/png,image/jpg,image/svg" onChange="loadFile(event, 'preview')">
                                 <label class="custom-file-label" for="customFile">chọn ảnh</label>
                             </div>
                         </div>

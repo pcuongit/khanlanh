@@ -1,14 +1,18 @@
+<div class="alert alert-danger alert-dismissible hidden" role="alert" id="errors_edit">
+    <button type="button" class="close" onClick="closeAlert(event)">
+        <span aria-hidden="true">×</span>
+    </button>
+    <p class="msg">
+    </p>
+</div>
+<div class="alert alert-success alert-dismissible hidden" role="alert" id="success_edit">
+    <button type="button" class="close" id="close-alert">
+        <span aria-hidden="true">×</span>
+    </button>
+    <p class="msg">
+    </p>
+</div>
 <form class="percent-100" id="form_edit">
-    <div class="flex percent-100 f-right">
-        <button type="button" class="btn btn-success mb-1 w-100 " id="btn_save">
-            <span class="text">Lưu</span>
-            <div class="loadingio-spinner-rolling-tpm40fc0lgn hidden" id="loading-spinner">
-                <div class="ldio-nr71hfyg91o">
-                    <div></div>
-                </div>
-            </div>
-        </button>
-    </div>
     <div class="form-group">
         <label for="discount">danh mục</label>
         <select class="form-control" name="id_category">
@@ -26,7 +30,8 @@
         <label for="price">giá</label>
         <div class="input-group mb-3">
             <input type="number" class="form-control" name="price" min="1000"
-                aria-label="Amount (to the nearest dollar)" value="{{ $product->price }}">
+                onKeyUp="calculatePriceAfterDiscount(event)" aria-label="Amount (to the nearest dollar)"
+                value="{{ $product->price }}">
             <div class="input-group-append">
                 <span class="input-group-text">VND</span>
             </div>
@@ -36,7 +41,8 @@
         <label for="discount">khuyến mãi</label>
         <div class="input-group mb-3">
             <input type="number" class="form-control" name="discount" max="100" min="0"
-                aria-label="Amount (to the nearest dollar)" value="{{ $product->discount_percent }}">
+                onKeyUp="calculatePriceAfterDiscount(event)" aria-label="Amount (to the nearest dollar)"
+                value="{{ $product->discount_percent }}">
             <div class="input-group-append">
                 <span class="input-group-text">%</span>
             </div>
@@ -60,10 +66,10 @@
     </div>
     <div class="form-group">
         <label for="image_url">Ảnh</label>
-        <span class="design" style="background:url({{asset($product->image_url)}}) no-repeat center center;"></span>
+        <img class="design" src="{{asset($product->image_url)}}" alt="" id="preview">
         <div class="custom-file mt-3">
             <input type="file" class="custom-file-input" id="customFile" name="image_url"
-                accept="image/png,image/jpg,image/svg">
+                accept="image/png,image/jpg,image/svg" onChange="loadFile(event, 'preview')">
             <label class="custom-file-label" for="customFile">chọn ảnh</label>
         </div>
     </div>

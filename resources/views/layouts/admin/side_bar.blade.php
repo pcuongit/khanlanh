@@ -1,16 +1,16 @@
 <!-- Sidebar -->
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('adminstrator.index')}}">
         <div class="sidebar-brand-icon">
             <img src="{{asset('admin/img/logo/logo2.png')}}">
         </div>
-        <div class="sidebar-brand-text mx-3">RuangAdmin</div>
+        <div class="sidebar-brand-text mx-3">Admin Page</div>
     </a>
     <hr class="sidebar-divider my-0">
-    <li class="nav-item active">
+    <li class="nav-item @if(in_array(Route::currentRouteName(), ['adminstrator.index'])){{'active'}}@endif">
         <a class="nav-link" href="{{route('adminstrator.index')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Thống Kê</span></a>
     </li>
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
@@ -27,6 +27,13 @@
         <a class="nav-link" href="{{route('product.index')}}">
             <i class="fas fa-fw fa-box"></i>
             <span>sản phẩm</span>
+        </a>
+    </li>
+
+    <li class="nav-item @if(in_array(Route::currentRouteName(), ['order.index'])){{'active'}}@endif">
+        <a class="nav-link" href="{{route('order.index')}}">
+            <i class="fas fa-fw fa-shipping-fast"></i>
+            <span>đơn hàng</span>
         </a>
     </li>
     <!-- <li class="nav-item">

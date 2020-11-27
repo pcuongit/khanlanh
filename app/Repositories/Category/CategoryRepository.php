@@ -47,7 +47,7 @@ class CategoryRepository extends EloquentRepository implements CategoryInterface
             $this->_model::create(['name' => $rq['name_cate'], 'image_url' => $pathImg]);
             return [
                 "status" => true,
-                "messages" => 'success',
+                "messages" => 'tạo mới thành công',
             ];
         } catch (Exception $e) {
             unlink($pathImg);
@@ -92,7 +92,7 @@ class CategoryRepository extends EloquentRepository implements CategoryInterface
             $this->_model::where('id', $id)->update($arrValue);
             return [
                 "status" => true,
-                "messages" => 'success',
+                "messages" => 'cập nhật thành công',
             ];
         } catch (Exception $e) {
             unlink($pathImg);

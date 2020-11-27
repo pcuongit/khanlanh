@@ -49,11 +49,14 @@
 @endsection
 @section('scripts')
 <script>
-function calculatePriceAfterDiscount() {
-    var discount = $("input[name='discount']").val() ?? 0;
-    var price = $("input[name='price']").val() ?? 0;
+function calculatePriceAfterDiscount(event) {
+    var _this = event.target;
+    var _form = _this.closest("form");
+    $(_this).removeClass('is-invalid');
+    var discount = $(_form).find("input[name='discount']").val() ?? 0;
+    var price = $(_form).find("input[name='price']").val() ?? 0;
     var final_amount = price - Math.round((discount * price) / 100);
-    $("#final_amount").val(final_amount);
+    $(_form).find("#final_amount").val(final_amount);
 }
 
 function successAnimation(message) {
@@ -67,10 +70,10 @@ function animateSave(object) {
     if (object.status === 200) {
         successAnimation(object.message);
         $('#btn_create').toggleClass('hidden');
-        $("#form_create").hide();
+        $("#form_create").slideUp("slow");
         $("#box_button_create").toggleClass("mb-4")
         $("#box_button_create>#bg_box").toggleClass("card")
-        resetForm();
+        resetForm("form_create");
         autoCloseAlert('success');
         search();
     }
@@ -107,74 +110,6 @@ function editProduct(event, id) {
     return false;
 }
 
-// function updateCate(event, id) {
-//     var _this = $(".form_" + id).closest("tr");
-//     var formData = new FormData();
-//     var _id = _this.find("input[name=id]").val();
-//     formData.append('name_cate', _this.find('input[name="name_cate"]').val());
-//     formData.append('_method', 'PATCH');
-//     if (_this.find("input[type=file]")[0].files[0] !== undefined) {
-//         formData.append('image_url', _this.find(
-//             "input[type=file]")[0].files[0]);
-//     }
-//     setupAjax();
-//     $.ajax({
-//         url: 'ajax/category/update/' + _id,
-//         type: 'POST',
-//         data: formData,
-//         processData: false,
-//         contentType: false,
-//         cache: false,
-//         timeout: 600000,
-//         success: (result, status, xhr) => {
-//             successAnimation(result.message);
-//             autoCloseAlert('success');
-//             $(".text_default_" + _id).toggleClass("hidden");
-//             $(".input_edit_" + _id).toggleClass("hidden");
-//             hiddenBtn($(this).parent());
-//             search();
-//         },
-//         error: (xhr, status, error) => {
-//             if (xhr.status === 422) {
-//                 var errorsArr = xhr.responseJSON.errors;
-//                 $("#errors>.msg").html("");
-//                 _this.find("input").removeClass("has-error")
-//                 _this.find(".custom-file-label").removeClass("has-error");
-//                 for (const [key, value] of Object.entries(errorsArr)) {
-//                     $("#errors>.msg").append("- " + value + "<br>");
-//                     _this.find(`input[name="${key}"]`).addClass("has-error");
-//                     if (key == 'image_url') {
-//                         _this.find(".custom-file-label").addClass("has-error");
-//                     }
-//                     console.log(`${key}: ${value}`);
-//                 }
-//                 console.log(_this);
-//                 if (!$("#errors").first().is(":hidden")) {
-//                     $("#errors").toggleClass("hidden");
-//                 } else {
-//                     $("#errors").slideDown("slow");
-//                 }
-//                 autoCloseAlert('errors');
-//             }
-//         },
-//     });
-
-//     return false;
-// }
-
-// function hiddenBtn(event) {
-//     event.find(".btn_edit").toggleClass("hidden");
-//     event.find(".btn_delete").toggleClass("hidden");
-//     event.find(".btn_update").toggleClass("hidden");
-//     event.find(".btn_cancel").toggleClass("hidden");
-// }
-
-// function cancelCate(event, id) {
-//     var _this = event.target;
-//     hiddenBtn($(".form_" + id));
-//     $(".text_default_" + id).toggleClass("hidden");
-//     $(".input_edit_" + id).toggleClass("hidden");
-// }
 
 function deleteProduct(id) {
     $("input[name=id_delete]").val(id);
@@ -206,7 +141,9 @@ $(window).on('load', function() {
     $('#btn_create').on('click', function() {
         $("#box_button_create").toggleClass("mb-4")
         $("#box_button_create>#bg_box").toggleClass("card")
-        $('#btn_create').toggleClass('hidden')
+        $('#btn_create').toggleClass('hidden');
+        $('#btn_cancel_form').toggleClass('hidden');
+        $('#btn_save').toggleClass('hidden');
         $("#form_create").slideDown("slow");
     })
 
@@ -273,15 +210,75 @@ $(window).on('load', function() {
 
         return false;
     });
-    $("input[name='discount']").on("keyup", function() {
-        calculatePriceAfterDiscount();
-    })
-    $("input[name='discount']").on("keyup", function() {
-        calculatePriceAfterDiscount();
-    })
 
     $("#btn_confirm_delete").on("click", function() {
         destroy($("input[name=id_delete]").val())
+    })
+
+    $("#btn_cancel_form").on("click", function() {
+        $('#btn_create').toggleClass('hidden');
+        $('#btn_cancel_form').toggleClass('hidden');
+        $('#btn_save').toggleClass('hidden');
+        $("#form_create").slideUp("slow");
+        $("#box_button_create").toggleClass("mb-4")
+        $("#box_button_create>#bg_box").toggleClass("card")
+        resetForm("form_create");
+    })
+
+    $("#btn_update").on("click", function() {
+        var product_id = $(this).data("product_id");
+        var _form = $("#form_edit");
+        var _this = _form;
+        var formData = new FormData();
+        formData.append('name', $(_form).find('input[name="name"]').val());
+        formData.append('price', $(_form).find('input[name="price"]').val());
+        formData.append('discount', $(_form).find('input[name="discount"]').val());
+        formData.append('id_category', $(_form).find('select[name="id_category"]').val());
+        formData.append('description', $(_form).find('textarea[name="description"]').val());
+        formData.append('_method', 'PATCH');
+        setupAjax();
+        $.ajax({
+            url: 'ajax/product/update/' + product_id,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: (result, status, xhr) => {
+                $("#EditModal").modal('hide');
+                $("#success>.msg").text(result.message);
+                $("#success").slideDown("slow");
+                search();
+                // autoCloseAlert('success');
+            },
+            error: (xhr, status, error) => {
+                if (xhr.status === 422) {
+                    var errorsArr = xhr.responseJSON.errors;
+                    $("#errors_edit>.msg").html("");
+                    $(_this).find("input").removeClass("is-invalid")
+                    $(_this).find("textarea").removeClass("is-invalid").addClass("is-valid")
+                    $(_this).find("input:not([readonly])").addClass("is-valid")
+                    $(_this).find(".custom-file-label").removeClass("is-invalid")
+                    for (const [key, value] of Object.entries(errorsArr)) {
+                        $("#errors_edit>.msg").append("- " + value + "<br>");
+                        $(_this).find(`[name=${key}]`).addClass("is-invalid");
+                        if (key == 'image_url') {
+                            $(_this).find(".custom-file-label").addClass("is-invalid");
+                        }
+                        console.log(`${key}: ${value}`);
+                    }
+                    if (!$("#errors_edit").first().is(":hidden")) {
+                        $("#errors_edit").toggleClass("hidden");
+                    } else {
+                        $("#errors_edit").slideDown("slow");
+                    }
+                    autoCloseAlert('errors_edit');
+                }
+            },
+        });
+
+        return false;
     })
 });
 </script>

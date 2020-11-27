@@ -21,8 +21,7 @@
                         <form class="percent-100 hidden" method="post" enctype="multipart/form-data" id="form_create">
                             @csrf
                             <div class="flex percent-100 f-right">
-
-                                <button type="button" class="btn btn-success mb-1 w-100 " id="btn_save">
+                                <button type="button" class="btn btn-success mb-1 w-100 hidden" id="btn_save">
                                     <span class="text">Lưu</span>
                                     <div class="loadingio-spinner-rolling-tpm40fc0lgn hidden" id="loading-spinner">
                                         <div class="ldio-nr71hfyg91o">
@@ -30,6 +29,8 @@
                                         </div>
                                     </div>
                                 </button>
+                                <button type="button" class="btn btn-warning ml-1 mb-1 w-100 hidden"
+                                    id="btn_cancel_form">Hủy</button>
                             </div>
                             <div class="form-group">
                                 <label for="name_cate">Tên danh mục</label>
@@ -37,9 +38,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="image_url">Ảnh</label>
+                                <img class="design mb-3" alt="" id="preview">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="customFile" name="image_url"
-                                        accept="image/png,image/jpg,image/svg">
+                                        accept="image/png,image/jpg,image/svg" onChange="loadFile(event, 'preview')">
                                     <label class="custom-file-label" for="customFile">chọn ảnh</label>
                                 </div>
                             </div>
@@ -148,7 +150,7 @@ function updateCate(event, id) {
                     $("#errors>.msg").append("- " + value + "<br>");
                     _this.find(`input[name="${key}"]`).addClass("is-invalid");
                     if (key == 'image_url') {
-                        _this.find(".custom-file-label").addClass("has-error");
+                        _this.find(".custom-file-label").addClass("is-invalid");
                     }
                     console.log(`${key}: ${value}`);
                 }
@@ -210,7 +212,9 @@ $(window).on('load', function() {
     $('#btn_create').on('click', function() {
         $("#box_button_create").toggleClass("mb-4")
         $("#box_button_create>#bg_box").toggleClass("card")
-        $('#btn_create').toggleClass('hidden')
+        $('#btn_create').toggleClass('hidden');
+        $('#btn_cancel_form').toggleClass('hidden');
+        $('#btn_save').toggleClass('hidden');
         $("#form_create").slideDown("slow");
 
     })
@@ -252,7 +256,7 @@ $(window).on('load', function() {
                 if (xhr.status === 422) {
                     var errorsArr = xhr.responseJSON.errors;
                     $("#errors>.msg").html("");
-                    $(".custom-file-label").removeClass("has-error");
+                    $(".custom-file-label").removeClass("is-invalid");
                     $(`input`).addClass("is-valid");
                     $("input").removeClass("is-invalid")
                     for (const [key, value] of Object.entries(errorsArr)) {
@@ -278,6 +282,16 @@ $(window).on('load', function() {
 
     $("#btn_confirm_delete").on("click", function() {
         destroy($("input[name=id_delete]").val())
+    })
+
+    $("#btn_cancel_form").on("click", function() {
+        $('#btn_create').toggleClass('hidden');
+        $('#btn_cancel_form').toggleClass('hidden');
+        $('#btn_save').toggleClass('hidden');
+        $("#form_create").slideUp("slow");
+        $("#box_button_create").toggleClass("mb-4")
+        $("#box_button_create>#bg_box").toggleClass("card")
+        resetForm();
     })
 });
 </script>

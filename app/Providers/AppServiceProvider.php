@@ -15,7 +15,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $array = [
             \App\Repositories\Category\CategoryInterface::class =>  \App\Repositories\Category\CategoryRepository::class,
-            \App\Repositories\Product\ProductInterface::class =>  \App\Repositories\Product\ProductRepository::class
+            \App\Repositories\Product\ProductInterface::class =>  \App\Repositories\Product\ProductRepository::class,
+            \App\Repositories\Order\OrderInterface::class =>  \App\Repositories\Order\OrderRepository::class
         ];
 
         foreach ($array as $interface => $repo) {
