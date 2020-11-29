@@ -126,7 +126,10 @@ class ProductRepository extends EloquentRepository implements ProductInterface
     }
 
     public function getProductsByCategory($slug) {
-        return $this->_model::select('product.*')->join('category', 'category.id', '=', 'product.id_category')->where('category.slug', $slug)->get();
+        return $this->_model::select('product.*', 'category.slug as slug_cate')->join('category', 'category.id', '=', 'product.id_category')->where('category.slug', $slug)->get();
+    }
 
+    public function getProductsBySlug($slug_cate, $slug_product) {
+        return $this->_model::select('product.*')->join('category', 'category.id', '=', 'product.id_category')->where('category.slug', $slug_cate)->where('product.slug', $slug_product)->first();
     }
 }

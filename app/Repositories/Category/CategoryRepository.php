@@ -108,4 +108,8 @@ class CategoryRepository extends EloquentRepository implements CategoryInterface
     {
         return $this->_model::where('slug', $slug)->first();
     }
+
+    public function getFirst() {
+        return $this->_model->first();
+    }
 }

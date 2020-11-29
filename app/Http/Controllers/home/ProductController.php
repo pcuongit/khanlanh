@@ -23,4 +23,14 @@ class ProductController extends Controller
         
         return view('home.category', compact('products', 'category'));
     }
+
+    public function detailProduct($slug_cate, $slug_product) {
+        $category = $this->cateRepository->getBySlug($slug_cate);
+        if(!$category) abort(404);
+
+        $product = $this->productRepository->getProductsBySlug($slug_cate, $slug_product);
+        if(!$product) abort(404);
+
+        return view('home.detail_product', compact('category', 'product'));
+    }
 }

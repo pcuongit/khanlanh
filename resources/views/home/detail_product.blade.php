@@ -7,10 +7,10 @@
     <div class="breadcrumb">
         <div class="container">
             <a href="" title="Trang chủ">Trang chủ <i class="fa fa-angle-right"></i></a>
-            <a href="san-pham.html" title="Sản phẩm">Sản phẩm <i class="fa fa-angle-right"></i></a>
-            <a href="san-pham/man-hinh-dvd-android-kovar-t1" title="Màn hình DVD Android KOVAR T1">Màn hình DVD Android
-                KOVAR T1 <i class="fa fa-angle-right"></i></a>
-            <span>Màn hình DVD Android KOVAR T1 – Chevrolet Cruze 2016 – 2019</span>
+            <a href="javascript:void(0)" title="Sản phẩm">Sản phẩm <i class="fa fa-angle-right"></i></a>
+            <a href="{{route('home.products', ['slug' => $category->slug])}}"
+                title="{{$category->name}}">{{$category->name}} <i class="fa fa-angle-right"></i></a>
+            <span>{{$product->name}}</span>
         </div>
     </div>
 </div>
@@ -22,14 +22,13 @@
                     id="img_product" class="MagicZoom" data-options="expandZoomMode: off;">
                     <figure class="mz-figure mz-hover-zoom mz-ready"><img
                             src="http://dcstoredn.com/upload/sanpham/chevrolet-cruze-2016-2019-dcstoredn-0301.jpg"
-                            alt="Công Ty TNHH Kinh Doanh Và Công Nghệ DC"
-                            style="max-width: 1200px; max-height: 1200px;">
+                            alt="{{$category->name}}" style="max-width: 1200px; max-height: 1200px;">
                         <div class="mz-lens"
                             style="top: 0px; transform: translate(-10000px, -10000px); width: 284px; height: 284px;">
                             <img src="http://dcstoredn.com/upload/sanpham/chevrolet-cruze-2016-2019-dcstoredn-0301.jpg"
                                 style="position: absolute; top: 0px; left: 0px; width: 583px; height: 583px; transform: translate(-111px, -1px);">
                         </div>
-                        <div class="mz-hint mz-hint-hidden"><span class="mz-hint-message">Click to expand</span></div>
+                        <!-- <div class="mz-hint mz-hint-hidden"><span class="mz-hint-message">Click to expand</span></div> -->
                     </figure>
                 </a>
                 <div class="mini_img_product slick-initialized slick-slider" id="sl_hinhthem">
@@ -41,18 +40,16 @@
             </div>
             <ul class="info_product">
                 <li class="my-flex-between no-border-bottom">
-                    <h2 class="tieude_detail">Màn hình DVD Android KOVAR T1 – Chevrolet Cruze 2016 – 2019</h2>
+                    <h2 class="tieude_detail">{{$category->name}}</h2>
                 </li>
-
-                <li class="my-flex-between">
+                <!-- <li class="my-flex-between">
                     <span>Mã sản phẩm:</span>
                     <span><b>T1 – Chevrolet Cruze 2016 – 2019</b></span>
-                </li>
+                </li> -->
                 <li class="my-flex-between">
                     <span>Giá bán:</span>
                     <span>
                         <b class="motgia">Liên hệ</b>
-
                     </span>
                 </li>
                 <li>Mô tả</li>

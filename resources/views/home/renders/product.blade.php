@@ -1,5 +1,6 @@
 @if(isset($list))
 <div class="row list-items">
+    @if(count($list) > 0)
     @foreach($list as $item)
     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
         <div class="theme-item responsive">
@@ -12,7 +13,8 @@
                     <div class="button">
                         <a href="/demo/oh-bach-hoa" class="view-demo action-preview-theme btn-registration"
                             data-url="https://oh-bach-hoa.mysapo.net/" target="_blank">Xem thử</a>
-                        <a href="/oh-bach-hoa" class="view-detail btn-registration">Chi tiết</a>
+                        <a href="{{route('product.detail_product', ['slug_cate' => $item->slug_cate, 'slug_product' => $item->slug])}}"
+                            class="view-detail btn-registration">Chi tiết</a>
                     </div>
                 </div>
             </div>
@@ -25,5 +27,8 @@
         </div>
     </div>
     @endforeach
+    @else
+    <p>không tồn tại sản phẩm nào</p>
+    @endif
 </div>
 @endif

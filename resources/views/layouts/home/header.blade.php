@@ -63,10 +63,10 @@
                     </form>
                 </div>
                 <ul class="main-menu d-none d-xl-flex align-items-center">
-                    <li>
-                        <a href="javascript:void(0)"><i class="fa fa-home"></i> Trang Chủ</a>
+                    <li class="@if(in_array(Route::currentRouteName(), ['home.index'])){{'active'}}@endif">
+                        <a href="{{route('home.index')}}"><i class="fa fa-home"></i> Trang Chủ</a>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown @if(in_array(Route::currentRouteName(), ['home.products'])){{'active'}}@endif">
                         <a href="javascript:void(0)">Sản Phẩm <i class="fa fa-angle-down"></i></a>
                         <ul class="child-menu other p-0">
                             @foreach($listCate as $cate)
@@ -76,10 +76,10 @@
                             @endforeach
                         </ul>
                     </li>
-                    <li>
+                    <li class="@if(in_array(Route::currentRouteName(), ['home.abountme'])){{'active'}}@endif">
                         <a href="javascript:void(0)">Giới Thiệu</i></a>
                     </li>
-                    <li>
+                    <li class="@if(in_array(Route::currentRouteName(), ['home.contact'])){{'active'}}@endif">
                         <a href="javascript:void(0)">Liên Hệ</i></a>
                     </li>
                 </ul>

@@ -9,17 +9,58 @@
     <div class="index-title login-box">
         <div class="container">
             <ul class="tab_category">
-                @foreach($listCate as $cate)
-                <li>
-                    <a href="{{route('home.products', ['slug' => $cate->slug])}}">{{$cate->name}}</a>
+                @foreach($listCate as $key => $cate)
+                <li data-slug_cate="{{$cate->slug}}" data-description_cate="{{$cate->description}}"
+                    class="@if($key == 0){{'active'}}@endif">
+                    <a href="javascript:void(0)">{{$cate->name}}</a>
                 </li>
                 @endforeach
             </ul>
-            <p class="desc">Những mẫu web bán hàng được nhiều người dùng nhất</p>
+            <p class="desc" id="description_cate">{{$firstCate->description}}</p>
         </div>
     </div>
     <div class="container">
-        @include('home.renders.product')
+        @include('home.spinner')
+        <div id="list_product">
+            @include('home.renders.product')
+        </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+<script>
+var firstCate = $('.tab_category li').first().data('slug_cate')
+// console.log("🚀 ~ file: index.blade.php ~ line 29 ~ firstCate", firstCate)
+getProductsByCategory(firstCate);
+
+function getProductsByCategory(cateName) {
+    $.ajax({
+        url: 'ajax/render-product',
+        type: 'GET',
+        data: {
+            slug: cateName
+        },
+        timeout: 600000,
+        beforeSend: () => {
+            $('#list_product').html("");
+            showSpinner();
+        },
+        success: (result, status, xhr) => {
+            $('#list_product').html(result);
+            hideSpinner();
+        },
+        error: (xhr, status, error) => {
+            hideSpinner();
+        },
+    });
+}
+$(window).on('load', function() {
+    $('.tab_category li').on('click', function(event) {
+        $('.tab_category li').removeClass('active');
+        $(this).addClass('active');
+        $('#description_cate').html($(this).data('description_cate'));
+        getProductsByCategory($(this).data('slug_cate'));
+    })
+})
+</script>
 @endsection

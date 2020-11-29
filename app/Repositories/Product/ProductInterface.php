@@ -12,4 +12,5 @@ interface ProductInterface
     public function update($request, $id);
     public function findProduct($id);
     public function getProductsByCategory($slug);
+    public function getProductsBySlug($slug_cate, $slug_product);
 }

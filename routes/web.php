@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'home\HomeController@index');
+Route::get('/', 'home\HomeController@index')->name('home.index');
 Route::get('/san-pham/{slug}', 'home\ProductController@index')->name('home.products');
-Route::get('/san-pham/test', function () {
-    return view('home.detail_product');
+Route::get('/san-pham/{slug_cate}/{slug_product}','home\ProductController@detailProduct')->name('product.detail_product');
+Route::group(['prefix' => 'ajax'], function () {
+    Route::get('render-product', 'home\HomeController@ajaxGetProducts')->name('ajax.product.render');
 });
 Route::group(['prefix' => 'adminstrator'], function () {
     Route::get('/', 'admin\DashboardController@index')->name('adminstrator.index');
