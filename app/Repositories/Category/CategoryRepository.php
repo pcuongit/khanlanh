@@ -7,6 +7,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Config as Config;
+use App\Models\Category;
 class CategoryRepository extends EloquentRepository implements CategoryInterface
 {
     /**
@@ -101,5 +102,10 @@ class CategoryRepository extends EloquentRepository implements CategoryInterface
                 "messages" => $e->getMessages
             ];
         };
+    }
+
+    public function getBySlug($slug)
+    {
+        return $this->_model::where('slug', $slug)->first();
     }
 }

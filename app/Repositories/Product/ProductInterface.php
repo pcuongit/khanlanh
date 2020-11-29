@@ -11,4 +11,5 @@ interface ProductInterface
     public function delete($request);
     public function update($request, $id);
     public function findProduct($id);
+    public function getProductsByCategory($slug);
 }

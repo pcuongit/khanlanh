@@ -80,14 +80,21 @@ function animateSave(object) {
     $("#loading-spinner").addClass("hidden");
     if (object.status === 200) {
         successAnimation(object.message);
-        $('#btn_create').toggleClass('hidden');
-        $("#form_create").hide();
-        $("#box_button_create").toggleClass("mb-4")
-        $("#box_button_create>#bg_box").toggleClass("card")
+        closeFormCreate();
         resetForm();
         autoCloseAlert('success');
         search();
     }
+}
+
+function closeFormCreate() {
+    $('#btn_create').toggleClass('hidden');
+    $('#btn_cancel_form').toggleClass('hidden');
+    $('#btn_save').toggleClass('hidden');
+    $("#form_create").slideUp("slow");
+    $("#box_button_create").toggleClass("mb-4")
+    $("#box_button_create>#bg_box").toggleClass("card")
+    resetForm();
 }
 
 function search(text) {
@@ -285,13 +292,7 @@ $(window).on('load', function() {
     })
 
     $("#btn_cancel_form").on("click", function() {
-        $('#btn_create').toggleClass('hidden');
-        $('#btn_cancel_form').toggleClass('hidden');
-        $('#btn_save').toggleClass('hidden');
-        $("#form_create").slideUp("slow");
-        $("#box_button_create").toggleClass("mb-4")
-        $("#box_button_create>#bg_box").toggleClass("card")
-        resetForm();
+        closeFormCreate();
     })
 });
 </script>

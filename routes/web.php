@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,8 +12,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.dashboard');
+Route::get('/', 'home\HomeController@index');
+Route::get('/san-pham/{slug}', 'home\ProductController@index')->name('home.products');
+Route::get('/san-pham/test', function () {
+    return view('home.detail_product');
 });
 Route::group(['prefix' => 'adminstrator'], function () {
     Route::get('/', 'admin\DashboardController@index')->name('adminstrator.index');

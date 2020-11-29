@@ -10,4 +10,5 @@ interface CategoryInterface
     public function insert($request);
     public function delete($request);
     public function update($request, $id);
+    public function getBySlug($slug);
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Repositories\Category\CategoryInterface;
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Support\Facades\View;
+
 class CategoryController extends Controller
 {
     public $categoryRepository;
