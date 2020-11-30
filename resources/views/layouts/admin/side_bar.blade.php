@@ -36,6 +36,20 @@
             <span>đơn hàng</span>
         </a>
     </li>
+
+    <li class="nav-item @if(in_array(Route::currentRouteName(), ['aboutme.index'])){{'active'}}@endif">
+        <a class="nav-link" href="{{route('aboutme.index')}}">
+            <i class="fas fa-fw fa-info"></i>
+            <span>giới thiệu</span>
+        </a>
+    </li>
+
+    <li class="nav-item @if(in_array(Route::currentRouteName(), ['contact.index'])){{'active'}}@endif">
+        <a class="nav-link" href="{{route('contact.index')}}">
+            <i class="fas fa-fw fa-address-book"></i>
+            <span>liên hệ</span>
+        </a>
+    </li>
     <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
             aria-expanded="true" aria-controls="collapseBootstrap">

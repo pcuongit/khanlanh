@@ -23,7 +23,11 @@ Route::group(['prefix' => 'adminstrator'], function () {
     Route::resource('/category', 'admin\CategoryController');
     Route::resource('/product', 'admin\ProductController');
     Route::get('/order', 'admin\OrderController@index')->name('order.index');
+    Route::get('/aboutme', 'admin\AboutMeController@index')->name('aboutme.index');
+    Route::get('/contact', 'admin\ContactController@index')->name('contact.index');
     Route::group(['prefix' => 'ajax'], function () {
+        Route::post('/aboutme', 'admin\AboutMeController@createOrUpdate');
+        Route::post('/contact', 'admin\ContactController@createOrUpdate');
         Route::group(['prefix' => 'category'], function () {
             Route::post('create', 'admin\CategoryController@ajaxCreate')->name('ajax.category.create');
             Route::patch('update/{id}', 'admin\CategoryController@ajaxUpdate')->name('ajax.category.update');
