@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Banner extends Model
 {
-    use SoftDeletes;
     protected $table = 'banner';
     protected $primaryKey = 'id';
     protected $fillable = [

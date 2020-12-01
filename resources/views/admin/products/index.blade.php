@@ -65,6 +65,7 @@ function successAnimation(message) {
 }
 
 function animateSave(object) {
+    console.log("🚀 ~ file: index.blade.php ~ line 68 ~ animateSave ~ object", object)
     $("#btn_save>.text").text("Lưu");
     $("#loading-spinner").addClass("hidden");
     if (object.status === 200) {
@@ -87,6 +88,7 @@ function search(text) {
         type: 'GET',
         timeout: 600000,
         success: function(result, status, xhr) {
+            console.log("🚀 ~ file: index.blade.php ~ line 91 ~ search ~ result", result)
             $(".table-responsive").html(result);
         },
         error: function(xhr, status, error) {},
@@ -148,10 +150,6 @@ $(window).on('load', function() {
     })
 
     $('#btn_save').on('click', function() {
-        $("#form_create").submit();
-    })
-
-    $("#form_create").on('submit', function() {
         $("#btn_save>.text").text("");
         $("#loading-spinner").removeClass("hidden");
         var formData = new FormData();
@@ -209,7 +207,7 @@ $(window).on('load', function() {
         });
 
         return false;
-    });
+    })
 
     $("#btn_confirm_delete").on("click", function() {
         destroy($("input[name=id_delete]").val())
@@ -236,6 +234,10 @@ $(window).on('load', function() {
         formData.append('id_category', $(_form).find('select[name="id_category"]').val());
         formData.append('description', $(_form).find('textarea[name="description"]').val());
         formData.append('_method', 'PATCH');
+        if ($(_form).find("input[type=file]")[0].files[0] !== undefined) {
+            formData.append('image_url', $(_form).find(
+                "input[type=file]")[0].files[0]);
+        }
         setupAjax();
         $.ajax({
             url: 'ajax/product/update/' + product_id,

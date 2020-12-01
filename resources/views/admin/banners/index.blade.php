@@ -3,10 +3,10 @@
 @section('content')
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Danh mục</h1>
+        <h1 class="h3 mb-0 text-gray-800">Banner</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="./">trang chủ</a></li>
-            <li class="breadcrumb-item active" aria-current="page">danh mục</li>
+            <li class="breadcrumb-item active" aria-current="page">banner</li>
         </ol>
     </div>
     @include('layouts.admin.alert')
@@ -18,35 +18,7 @@
                         <div class="flex percent-100 f-right">
                             <button type="button" class="btn btn-primary mb-1 w-100" id="btn_create">thêm mới</button>
                         </div>
-                        <form class="percent-100 hidden" method="post" enctype="multipart/form-data" id="form_create">
-                            @csrf
-                            <div class="flex percent-100 f-right">
-                                <button type="button" class="btn btn-success mb-1 w-100 hidden" id="btn_save">
-                                    <span class="text">Lưu</span>
-                                    <div class="loadingio-spinner-rolling-tpm40fc0lgn hidden" id="loading-spinner">
-                                        <div class="ldio-nr71hfyg91o">
-                                            <div></div>
-                                        </div>
-                                    </div>
-                                </button>
-                                <button type="button" class="btn btn-warning ml-1 mb-1 w-100 hidden"
-                                    id="btn_cancel_form">Hủy</button>
-                            </div>
-                            <div class="form-group">
-                                <label for="name_cate">Tên danh mục</label>
-                                <input type="text" name="name_cate" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="image_url">Ảnh</label>
-                                <img class="design mb-3" alt="" src="{{asset('image_common/no-image.png')}}"
-                                    id="preview">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile" name="image_url"
-                                        accept="image/png,image/jpg,image/svg" onChange="loadFile(event, 'preview')">
-                                    <label class="custom-file-label" for="customFile">chọn ảnh</label>
-                                </div>
-                            </div>
-                        </form>
+                        @include('admin.banners.form_create')
                     </div>
                 </div>
             </div>
@@ -57,16 +29,35 @@
             <!-- Simple Tables -->
             <div class="card">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">danh mục</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">banner</h6>
                 </div>
                 <div class="table-responsive">
-                    @include('admin.categories.render', ['data' => $data])
+                    @include('admin.banners.list', ['data' => $data])
                 </div>
                 <div class="card-footer"></div>
             </div>
         </div>
     </div>
     <!--Row-->
+    <!-- Modal Edit -->
+    <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog mw-90" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabelLogout">chỉnh sửa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Hủy</button>
+                    <a href="javascript:void(0)" class="btn btn-primary" id="btn_update" data-banner_id="">Cập Nhật</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 @section('scripts')
@@ -82,7 +73,7 @@ function animateSave(object) {
     if (object.status === 200) {
         successAnimation(object.message);
         closeFormCreate();
-        resetForm();
+        resetForm("form_create");
         autoCloseAlert('success');
         search();
     }
@@ -102,7 +93,7 @@ function search(text) {
     setupAjax();
     $.ajax({
         // url: 'ajax/category/render?search=' + (text) ? text : '',
-        url: 'ajax/category/render',
+        url: 'ajax/banner/render',
         type: 'GET',
         timeout: 600000,
         success: function(result, status, xhr) {
@@ -113,11 +104,20 @@ function search(text) {
     return false;
 }
 
-function editCate(event, id) {
-    var _this = event.target;
-    hiddenBtn($(".form_" + id));
-    $(".text_default_" + id).toggleClass("hidden");
-    $(".input_edit_" + id).toggleClass("hidden");
+function editBanner(event, id) {
+    $("#btn_update").data("banner_id", id);
+    setupAjax();
+    $.ajax({
+        url: 'ajax/banner/render_edit/' + id,
+        type: 'GET',
+        timeout: 600000,
+        success: function(result, status, xhr) {
+            $("#EditModal .modal-body").html(result);
+            $("#EditModal").modal("show");
+        },
+        error: function(xhr, status, error) {},
+    });
+    return false;
 }
 
 function updateCate(event, id) {
@@ -132,7 +132,7 @@ function updateCate(event, id) {
     }
     setupAjax();
     $.ajax({
-        url: 'ajax/category/update/' + _id,
+        url: 'ajax/banner/update/' + _id,
         type: 'POST',
         data: formData,
         processData: false,
@@ -176,21 +176,7 @@ function updateCate(event, id) {
     return false;
 }
 
-function hiddenBtn(event) {
-    event.find(".btn_edit").toggleClass("hidden");
-    event.find(".btn_delete").toggleClass("hidden");
-    event.find(".btn_update").toggleClass("hidden");
-    event.find(".btn_cancel").toggleClass("hidden");
-}
-
-function cancelCate(event, id) {
-    var _this = event.target;
-    hiddenBtn($(".form_" + id));
-    $(".text_default_" + id).toggleClass("hidden");
-    $(".input_edit_" + id).toggleClass("hidden");
-}
-
-function deleteCate(id) {
+function deleteBanner(id) {
     $("input[name=id_delete]").val(id);
     $("#deleteModal").modal();
 }
@@ -198,14 +184,16 @@ function deleteCate(id) {
 function destroy(id) {
     setupAjax();
     $.ajax({
-        url: 'ajax/category/destroy/' + id,
+        url: 'ajax/banner/destroy/' + id,
         type: 'DELETE',
         timeout: 600000,
         success: function(result, status, xhr) {
             if (result.status === 200) {
                 $("input[name=id_delete]").val();
                 $("#deleteModal").modal('hide');
+                successAnimation(result.message);
                 search()
+                autoCloseAlert('success')
             }
         },
         error: function(xhr, status, error) {
@@ -235,7 +223,7 @@ $(window).on('load', function() {
         $("#btn_save>.text").text("");
         $("#loading-spinner").removeClass("hidden");
         var formData = new FormData();
-        formData.append('name_cate', $('input[name="name_cate"]').val());
+        formData.append('priorty', $('input[name="priorty"]').val());
         formData.append('_method', 'POST');
         if ($("input[type=file]")[0].files[0] !== undefined) {
             formData.append('image_url', $(
@@ -243,7 +231,7 @@ $(window).on('load', function() {
         }
         setupAjax();
         $.ajax({
-            url: 'ajax/category/create',
+            url: 'ajax/banner/create',
             type: 'POST',
             data: formData,
             processData: false,
@@ -252,9 +240,6 @@ $(window).on('load', function() {
             timeout: 600000,
             success: function(result, status, xhr) {
                 animateSave(result);
-                console.log("🚀 ~ file: index.blade.php ~ line 113 ~ $ ~ status", status)
-                console.log("🚀 ~ file: index.blade.php ~ line 113 ~ $ ~ xhr", xhr)
-                console.log("🚀 ~ file: index.blade.php ~ line 111 ~ $ ~ data", result)
             },
             error: function(xhr, status, error) {
                 animateSave({
@@ -287,7 +272,62 @@ $(window).on('load', function() {
 
         return false;
     });
+    $("#btn_update").on("click", function() {
+        var banner_id = $(this).data("banner_id");
+        var _form = $("#form_edit");
+        var _this = _form;
+        var formData = new FormData();
+        formData.append('priorty', $(_form).find('input[name="priorty"]').val());
+        formData.append('_method', 'POST');
+        if ($(_form).find("input[type=file]")[0].files[0] !== undefined) {
+            formData.append('image_url', $(_form).find(
+                "input[type=file]")[0].files[0]);
+        }
+        formData.append('_method', 'PATCH');
+        setupAjax();
+        $.ajax({
+            url: 'ajax/banner/update/' + banner_id,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: (result, status, xhr) => {
+                $("#EditModal").modal('hide');
+                $("#success>.msg").text(result.message);
+                $("#success").slideDown("slow");
+                search();
+                autoCloseAlert('success');
+            },
+            error: (xhr, status, error) => {
+                if (xhr.status === 422) {
+                    var errorsArr = xhr.responseJSON.errors;
+                    $("#errors_edit>.msg").html("");
+                    $(_this).find("input").removeClass("is-invalid")
+                    $(_this).find("textarea").removeClass("is-invalid").addClass("is-valid")
+                    $(_this).find("input:not([readonly])").addClass("is-valid")
+                    $(_this).find(".custom-file-label").removeClass("is-invalid")
+                    for (const [key, value] of Object.entries(errorsArr)) {
+                        $("#errors_edit>.msg").append("- " + value + "<br>");
+                        $(_this).find(`[name=${key}]`).addClass("is-invalid");
+                        if (key == 'image_url') {
+                            $(_this).find(".custom-file-label").addClass("is-invalid");
+                        }
+                        console.log(`${key}: ${value}`);
+                    }
+                    if (!$("#errors_edit").first().is(":hidden")) {
+                        $("#errors_edit").toggleClass("hidden");
+                    } else {
+                        $("#errors_edit").slideDown("slow");
+                    }
+                    autoCloseAlert('errors_edit');
+                }
+            },
+        });
 
+        return false;
+    })
     $("#btn_confirm_delete").on("click", function() {
         destroy($("input[name=id_delete]").val())
     })

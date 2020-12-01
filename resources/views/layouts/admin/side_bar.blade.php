@@ -50,6 +50,13 @@
             <span>liên hệ</span>
         </a>
     </li>
+
+    <li class="nav-item @if(in_array(Route::currentRouteName(), ['banner.index'])){{'active'}}@endif">
+        <a class="nav-link" href="{{route('banner.index')}}">
+            <i class="fas fa-fw fa-image"></i>
+            <span>banner</span>
+        </a>
+    </li>
     <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
             aria-expanded="true" aria-controls="collapseBootstrap">

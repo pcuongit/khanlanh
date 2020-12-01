@@ -6,6 +6,7 @@
         <p class="tt_sub">Sản phẩm</p>
         <h2 class="tt_main"><span>chúng tôi cung cấp</span></h2>
     </div>
+    @if(isset($listCate) && $listCate->count() > 0)
     <div class="index-title login-box">
         <div class="container">
             <ul class="tab_category">
@@ -19,6 +20,7 @@
             <p class="desc" id="description_cate">{{$firstCate->description}}</p>
         </div>
     </div>
+    @endif
     <div class="container">
         @include('home.spinner')
         <div id="list_product">
@@ -30,7 +32,6 @@
 @section('scripts')
 <script>
 var firstCate = $('.tab_category li').first().data('slug_cate')
-// console.log("🚀 ~ file: index.blade.php ~ line 29 ~ firstCate", firstCate)
 getProductsByCategory(firstCate);
 
 function getProductsByCategory(cateName) {

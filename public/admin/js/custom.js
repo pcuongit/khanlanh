@@ -3,6 +3,7 @@ function resetForm(id) {
     $("#"+id).find("textarea").val("");
     $("#"+id).find("select").val("");
     $("#"+id).find(".custom-file-label").text("");
+    $("#"+id).find("img").removeAttr("src"); 
 }
 function autoCloseAlert(id) {
     if (!$('#' + id).first().is(":hidden")) {
@@ -34,7 +35,7 @@ function loadFile(event, id) {
 }
 function closeAlert(event) {
     var _this = $(event.target).closest(".alert");
-    if(!_this.first().is(":hidden")) {
+    if (!_this.first().is(":hidden")) {
         _this.slideUp("slow");
     }    
 }
@@ -42,4 +43,12 @@ $(window).on('load', function() {
     $("input").on('keyup', function() {
         $(this).removeClass('is-invalid');
     })
+    var img = $("img");
+    img.on('load', function(e){
+        
+    }).on('error', function(e) {
+        console.log("🚀 ~ file: custom.js ~ line 50 ~ img.on ~ e", e)
+        $(this).attr('src', '/image_common/no-image.png');
+    });
 });
+

@@ -25,6 +25,7 @@ Route::group(['prefix' => 'adminstrator'], function () {
     Route::get('/order', 'admin\OrderController@index')->name('order.index');
     Route::get('/aboutme', 'admin\AboutMeController@index')->name('aboutme.index');
     Route::get('/contact', 'admin\ContactController@index')->name('contact.index');
+    Route::get('/banner', 'admin\BannerController@index')->name('banner.index');
     Route::group(['prefix' => 'ajax'], function () {
         Route::post('/aboutme', 'admin\AboutMeController@createOrUpdate');
         Route::post('/contact', 'admin\ContactController@createOrUpdate');
@@ -43,6 +44,13 @@ Route::group(['prefix' => 'adminstrator'], function () {
         });
         Route::group(['prefix' => 'order'], function () {
             Route::get('render', 'admin\OrderController@ajaxRender')->name('ajax.order.render');
+        });
+        Route::group(['prefix' => 'banner'], function () {
+            Route::post('create', 'admin\BannerController@ajaxCreate')->name('ajax.banner.create');
+            Route::get('render', 'admin\BannerController@ajaxRender')->name('ajax.banner.render');
+            Route::delete('destroy/{id}', 'admin\BannerController@destroy')->name('ajax.banner.destroy');
+            Route::get('render_edit/{id}', 'admin\BannerController@ajaxRenderEdit')->name('ajax.banner.render_edit');
+            Route::patch('update/{id}', 'admin\BannerController@ajaxUpdate')->name('ajax.banner.update');
         });
     });
 });

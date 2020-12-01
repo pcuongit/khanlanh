@@ -11,3 +11,11 @@ function hideSpinner() {
 function showSpinner() {
     $('#spinner').show();
 }
+$(window).on('load', function() {
+    var img = $("img");
+    img.on('load', function(e){
+        
+    }).on('error', function(e) {
+        $(this).attr('src', '/image_common/no-image.png');
+    });
+})
