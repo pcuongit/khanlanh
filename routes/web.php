@@ -15,8 +15,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'home\HomeController@index')->name('home.index');
 Route::get('/san-pham/{slug}', 'home\ProductController@index')->name('home.products');
 Route::get('/san-pham/{slug_cate}/{slug_product}','home\ProductController@detailProduct')->name('product.detail_product');
+Route::get('/gioi-thieu', 'home\AboutmeController@index')->name('home.aboutme.index');
+Route::get('/lien-he', 'home\ContactController@index')->name('home.contact.index');
 Route::group(['prefix' => 'ajax'], function () {
     Route::get('render-product', 'home\HomeController@ajaxGetProducts')->name('ajax.product.render');
+    Route::post('find-product', 'home\ProductController@ajaxFindProduct')->name('ajax.product.find');
 });
 Route::group(['prefix' => 'adminstrator'], function () {
     Route::get('/', 'admin\DashboardController@index')->name('adminstrator.index');

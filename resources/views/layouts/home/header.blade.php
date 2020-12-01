@@ -5,8 +5,10 @@
     <div class="container h-100 mw-100 ">
         <div class="row h-100 ">
             <div class="col-xl-2 col-8 d-flex align-items-center">
-                <img class="logo" src="{{asset('home/custom/images/logo.jpg')}}" />
-                <span class="company">Khăn lạnh toàn phát</span>
+                <a href="{{route('home.index')}}">
+                    <img class="logo" src="{{asset('home/custom/images/logo.jpg')}}" />
+                    <span class="company">Khăn lạnh toàn phát</span>
+                </a>
             </div>
             <div class="col-xl-10 col-4 d-flex justify-content-between">
                 <div class="h-100 search d-flex align-items-center">
@@ -45,21 +47,26 @@
                                 </g>
                             </svg>
                         </a>
+                        @php
+                        $search_by = $listCate->toArray()[0]['slug'];
+                        @endphp
                         <div class="sort-by">
                             <ul>
-                                <li data-sort="id" class="">Mới nhất</li>
-                                <li data-sort="id" class="">Mới nhất</li>
-                                <li data-sort="price-asc" class="active">Giá từ thấp đến cao</li>
-                                <li data-sort="price-desc">Giá từ cao đến đến thấp</li>
-                                <li data-sort="alpha-asc">Tên A - Z</li>
-                                <li data-sort="alpha-desc">Tên Z - A</li>
-                                <li data-sort="discount-asc">Bán chạy nhất</li>
+                                @foreach($listCate as $cate)
+                                <li data-sort="{{$cate->slug}}">{{ $cate->name }}</li>
+                                @endforeach
                             </ul>
+                            <input type="hidden" name="search_by" value="{{$search_by}}" />
                         </div>
                     </div>
-                    <form action="/search" novalidate="novalidate" id="form-search">
-                        <input type="text" placeholder="Bạn tìm sản phẩm gì?" name="key" class="search-key">
+                    <form id="form-search">
+                        <input type="text" placeholder="Bạn tìm sản phẩm gì?" name="search_key" class="search-key"
+                            autocomplete="off" autocorrect="off">
                         <button><i class="fa fa-search" aria-hidden="true"></i></button>
+                        <div class="search_list">
+                            <ul>
+                            </ul>
+                        </div>
                     </form>
                 </div>
                 <ul class="main-menu d-none d-xl-flex align-items-center">
@@ -68,19 +75,25 @@
                     </li>
                     <li class="dropdown @if(in_array(Route::currentRouteName(), ['home.products'])){{'active'}}@endif">
                         <a href="javascript:void(0)">Sản Phẩm <i class="fa fa-angle-down"></i></a>
+                        @php
+                        $current = '';
+                        if(Route::currentRouteName() == 'home.products') {
+                        $current = request()->route()->parameters()['slug'];
+                        }
+                        @endphp
                         <ul class="child-menu other p-0">
                             @foreach($listCate as $cate)
-                            <li>
+                            <li class="@if($current === $cate->slug) active @endif">
                                 <a href="{{route('home.products', ['slug' => $cate->slug])}}">{{$cate->name}}</a>
                             </li>
                             @endforeach
                         </ul>
                     </li>
                     <li class="@if(in_array(Route::currentRouteName(), ['home.abountme'])){{'active'}}@endif">
-                        <a href="javascript:void(0)">Giới Thiệu</i></a>
+                        <a href="{{route('home.aboutme.index')}}">Giới Thiệu</i></a>
                     </li>
                     <li class="@if(in_array(Route::currentRouteName(), ['home.contact'])){{'active'}}@endif">
-                        <a href="javascript:void(0)">Liên Hệ</i></a>
+                        <a href="{{route('home.contact.index')}}">Liên Hệ</i></a>
                     </li>
                 </ul>
             </div>

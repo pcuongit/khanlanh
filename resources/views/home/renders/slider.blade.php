@@ -15,7 +15,7 @@
 <script>
 autoSlider();
 var slideIndex = 1;
-showDivs(slideIndex);
+
 
 function plusDivs(n) {
     showDivs(slideIndex += n);
@@ -37,8 +37,11 @@ function showDivs(n) {
 }
 
 function autoSlider() {
-    setInterval(function() {
-        plusDivs(1);
-    }, 5000);
+    if (document.getElementsByClassName("my-slide").length > 0) {
+        showDivs(slideIndex);
+        setInterval(function() {
+            plusDivs(1);
+        }, 5000);
+    }
 }
 </script>
