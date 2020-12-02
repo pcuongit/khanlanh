@@ -87,15 +87,17 @@ $(window).on('load', function() {
     // })
 
     $('#pollSlider-button').click(function() {
-        if($(this).css("margin-right") == "200px")
+        console.log($(this).css("margin-right") != "0px");
+        if($(this).css("margin-right") != "0px")
         {
-            $('.pollSlider').animate({"margin-right": '-=200'});
-            $('#pollSlider-button').animate({"margin-right": '-=200'});
+            console.log($(this).css("right"));
+            // $('.pollSlider').animate({"margin-right": '-=200'});
+            // $('#pollSlider-button').animate({"margin-right": '-=200'});
         }
         else
         {
-            $('.pollSlider').animate({"margin-right": '+=200'});
-            $('#pollSlider-button').animate({"margin-right": '+=200'});
+            $('.pollSlider').animate({"right": '+=80%'});
+            $('#pollSlider-button').animate({"right": '+=80%'});
         }
       });
 });
