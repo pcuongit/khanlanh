@@ -10,11 +10,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to logout?</p>
+                <p>bạn có muốn đăng xuất không?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                <a href="login.html" class="btn btn-primary">Logout</a>
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Không</button>
+                <form action="{{route('adminstrator.logout.post')}}" method="post">
+                    @csrf
+                    <input type="submit" value="Đăng Xuất" class="btn btn-primary">
+                </form>
             </div>
         </div>
     </div>

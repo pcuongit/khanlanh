@@ -125,8 +125,9 @@ class ProductRepository extends EloquentRepository implements ProductInterface
         return $this->_model::find($id);
     }
 
-    public function getProductsByCategory($slug) {
-        return $this->_model::select('product.*', 'category.slug as slug_cate')->join('category', 'category.id', '=', 'product.id_category')->where('category.slug', $slug)->get();
+    public function getProductsByCategory($slug, $page) {
+        $limit = \Config::get('constant.limit_product');
+        return $this->_model::select('product.*', 'category.slug as slug_cate')->join('category', 'category.id', '=', 'product.id_category')->where('category.slug', $slug)->skip($page * $limit)->limit($limit)->get();
     }
 
     public function getProductsBySlug($slug_cate, $slug_product) {
@@ -134,6 +135,13 @@ class ProductRepository extends EloquentRepository implements ProductInterface
     }
 
     public function searchProductsBySlug($slug_cate, $search_text) {
+        if($slug_cate == null) 
+        return $this->_model::select('product.*', 'category.slug as slug_cate')->join('category', 'category.id', '=', 'product.id_category')->where('product.name','LIKE', '%'.$search_text.'%')->get();
+        else 
         return $this->_model::select('product.*', 'category.slug as slug_cate')->join('category', 'category.id', '=', 'product.id_category')->where('category.slug', $slug_cate)->where('product.name','LIKE', '%'.$search_text.'%')->get();
+    }
+
+    public function countAllBySlug($slug) {
+        return $this->_model::select('product.*', 'category.slug as slug_cate')->join('category', 'category.id', '=', 'product.id_category')->where('category.slug', $slug)->get()->count();
     }
 }

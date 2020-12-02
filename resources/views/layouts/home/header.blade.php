@@ -4,13 +4,29 @@
     @endphp
     <div class="container h-100 mw-100 ">
         <div class="row h-100 ">
-            <div class="col-xl-2 col-8 d-flex align-items-center">
+            <div class="row p-2" id="header_mobile">
+                <div>
+                    <a href="{{route('home.index')}}">
+                        <img class="logo" src="{{asset('home/custom/images/logo.jpg')}}" />
+                        <span class="company">Khăn lạnh toàn phát</span>
+                    </a>
+                </div>
+                <div class="hamber-menu">
+                    <div class="pollSlider">
+
+                    </div>
+                    <div id="pollSlider-button">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 col-4 col-md-4 d-flex align-items-center" id="header_1">
                 <a href="{{route('home.index')}}">
                     <img class="logo" src="{{asset('home/custom/images/logo.jpg')}}" />
                     <span class="company">Khăn lạnh toàn phát</span>
                 </a>
             </div>
-            <div class="col-xl-10 col-4 d-flex justify-content-between">
+            <div class="col-xl-10 col-8 col-md-8 d-flex justify-content-between" id="header_2">
                 <div class="h-100 search d-flex align-items-center">
                     <div class="sort-theme d-none d-lg-block">
                         <a href="javascript:;">
@@ -69,7 +85,7 @@
                         </div>
                     </form>
                 </div>
-                <ul class="main-menu d-none d-xl-flex align-items-center">
+                <ul class="main-menu d-xl-flex align-items-center">
                     <li class="@if(in_array(Route::currentRouteName(), ['home.index'])){{'active'}}@endif">
                         <a href="{{route('home.index')}}"><i class="fa fa-home"></i> Trang Chủ</a>
                     </li>

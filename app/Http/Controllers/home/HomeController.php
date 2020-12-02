@@ -27,7 +27,10 @@ class HomeController extends Controller
     public function ajaxGetProducts(Request $request) {
         // dd($request->all());
         $slug = $request->get('slug');
-        $products = $this->productRepository->getProductsByCategory($slug);
-        return View::make('home.renders.product', ['list' => $products]);
+        $page = $request->get('page');
+        $count = $this->productRepository->countAllBySlug($slug);
+        $limit = \Config::get('constant.limit_product');
+        $products = $this->productRepository->getProductsByCategory($slug, $page);
+        return View::make('home.renders.product', ['list' => $products, 'totalProducts' => $count, 'limit' => $limit]);
     }
 }

@@ -92,3 +92,7 @@ body {
 img {
     object-fit: contain;
 }
+
+.alert p:last-child {
+    margin-bottom: 0;
+}

@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function index($slug) {
         $category = $this->cateRepository->getBySlug($slug);
         if(!$category) abort(404);
-        $products = $this->productRepository->getProductsByCategory($slug);
+        $products = $this->productRepository->getProductsByCategory($slug, 0);
         
         return view('home.category', compact('products', 'category'));
     }
@@ -37,7 +37,6 @@ class ProductController extends Controller
     public function ajaxFindProduct(Request $request) {
         $slug_cate = $request->input('slug_cate');
         $search_text = $request->input('search_text');
-
         $category = $this->cateRepository->getBySlug($slug_cate);
         if(!$category) return response()->json([
             'status' => 404,

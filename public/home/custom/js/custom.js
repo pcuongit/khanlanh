@@ -75,9 +75,27 @@ $(window).on('load', function() {
             clearTimeout(timeout);
         }
     });
+    $('[name="search_key"]').on('focusout', function() {
+        $('.search_list ul').html('');
+        $('.search_list').removeClass('active');
+        $('[name=search_key]').val('');
+    })
     // $('[name="search_key"]').on('keydown',function(e) {
     //     timeout = setTimeout(function() {
     //         search($('[name="search_key"]').val());
     //     },2000)
     // })
+
+    $('#pollSlider-button').click(function() {
+        if($(this).css("margin-right") == "200px")
+        {
+            $('.pollSlider').animate({"margin-right": '-=200'});
+            $('#pollSlider-button').animate({"margin-right": '-=200'});
+        }
+        else
+        {
+            $('.pollSlider').animate({"margin-right": '+=200'});
+            $('#pollSlider-button').animate({"margin-right": '+=200'});
+        }
+      });
 });

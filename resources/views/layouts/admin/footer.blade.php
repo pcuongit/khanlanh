@@ -6,7 +6,7 @@
             <span>copyright &copy; <script>
                 document.write(new Date().getFullYear());
                 </script> - developed by
-                <b><a href="https://indrijunanda.gitlab.io/" target="_blank">Cường Phan</a></b>
+                <b><a href="#" target="_blank">Cường Phan</a></b>
             </span>
         </div>
     </div>
