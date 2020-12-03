@@ -13,8 +13,11 @@ class AdminstratorSeeder extends Seeder
     public function run()
     {
         DB::table('adminstrator')->insert([
-            'username' => 'admin',
-            'password' => Hash::make('1234Abcd')
+            'username' => 'admin@gmail.com',
+            'password' => Hash::make('123456')
+        ],[
+            'username' => 'cuongph@runsystem.net',
+            'password' => Hash::make('123456')
         ]);
     }
 }

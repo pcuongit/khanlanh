@@ -18,10 +18,9 @@
     <div class="box_container">
         <div class="div_info_product">
             <div class="zoom_slick">
-                <a href="http://dcstoredn.com/upload/sanpham/chevrolet-cruze-2016-2019-dcstoredn-0301.jpg"
-                    id="img_product" class="MagicZoom" data-options="expandZoomMode: off;">
-                    <figure class="mz-figure mz-hover-zoom mz-ready"><img
-                            src="http://dcstoredn.com/upload/sanpham/chevrolet-cruze-2016-2019-dcstoredn-0301.jpg"
+                <a href="{{asset($product->image_url)}}" id="img_product" class="MagicZoom"
+                    data-options="expandZoomMode: off;">
+                    <figure class="mz-figure mz-hover-zoom mz-ready"><img src="{{asset($product->image_url)}}"
                             alt="{{$category->name}}" style="max-width: 1200px; max-height: 1200px;">
                         <div class="mz-lens"
                             style="top: 0px; transform: translate(-10000px, -10000px); width: 284px; height: 284px;">
@@ -40,19 +39,26 @@
             </div>
             <ul class="info_product">
                 <li class="my-flex-between no-border-bottom">
-                    <h2 class="tieude_detail">{{$category->name}}</h2>
+                    <h2 class="tieude_detail">{{$product->name}}</h2>
                 </li>
                 <!-- <li class="my-flex-between">
                     <span>Mã sản phẩm:</span>
                     <span><b>T1 – Chevrolet Cruze 2016 – 2019</b></span>
                 </li> -->
                 <li class="my-flex-between">
-                    <span>Giá bán:</span>
+                    <span>Giá bán:
+                        @if($product->discount_percent > 0)
+                        <span class="price_bf_discount">{{number_format($product->price)}} <b>VNĐ</b></span> <i
+                            class="fas fa-angle-double-right"></i>
+                        @endif
+                        {{number_format($product->final_amount)}}
+                        <b>VNĐ</b></span>
                     <span>
                         <b class="motgia">Liên hệ</b>
                     </span>
                 </li>
-                <li>Mô tả</li>
+                <li>Mô tả: <p class="pl-3 mb-0">{{$product->description}}</p>
+                </li>
                 <li>
                     <p><b>Số lượng:</b></p>
                     <div class="product-qty">
@@ -79,7 +85,7 @@
                         <span>Mua ngay sản phẩm này</span>
                         <span>Cam kết hàng chính hãng, thật 100%</span>
                     </a>
-                    <div class="goingay no-border-bottom">Gọi ngay: 0934.757.138 Để có được giá tốt nhất</div>
+                    <div class="goingay no-border-bottom">Gọi ngay: 0315 762 650 Để có được giá tốt nhất</div>
                 </li>
             </ul>
         </div>
