@@ -48,7 +48,7 @@ $(window).on('load', function() {
         
     }).on('error', function(e) {
         console.log("🚀 ~ file: custom.js ~ line 50 ~ img.on ~ e", e)
-        $(this).attr('src', '/image_common/no-image.png');
+        $(this).attr('src', '/assets_common/images/no-image.png');
     });
 });
 

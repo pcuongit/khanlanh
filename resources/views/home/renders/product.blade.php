@@ -4,7 +4,7 @@
 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
     <div class="theme-item responsive">
         <div class="theme-image">
-            <img src="{{asset($item->image_url)}}" onError="this.onerror=null;this.src='/image_common/no-image.png';">
+            <img src="{{asset($item->image_url)}}" onError="this.onerror=null;this.src='/assets_common/images/no-image.png';">
             <div class="discount">
                 <b>{{$item->discount_percent}}%</b>
             </div>
