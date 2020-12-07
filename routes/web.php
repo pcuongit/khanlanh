@@ -22,6 +22,7 @@ Route::get('/hpbd/{hoten}', function($hoten) {
         'nguyen-trong-nghia' => 'Nguyễn Trọng Nghĩa',
         'nguyen-thai-thuy' => 'Nguyễn Thái Thụy',
         'phan-trong-tuan' => 'Phan Trọng Tuấn',
+        'tu-trinh' => 'Tú Trinh'
     ];
     $hovaten = $arr[$hoten] ?? abort(404);
     return view('external_page.index', compact('hovaten'));

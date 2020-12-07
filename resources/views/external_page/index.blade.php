@@ -424,7 +424,7 @@
                 <div class="info next--info">
                     <h1 class="text name">Vào Ngày:</h1>
                     <h4 class="text location">11/12/2020</h4>
-                    <p class="text description">lúc 20:00:00</p>
+                    <p class="text description">lúc 21:00:00</p>
                 </div>
 
                 <div class="info previous--info">

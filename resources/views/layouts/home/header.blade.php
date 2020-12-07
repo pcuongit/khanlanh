@@ -1,182 +1,231 @@
-<div class="main-header">
-    @php
-    $listCate = App\Models\Category::get();
-    @endphp
-    <div class="container h-100 mw-100 ">
-        <div class="row h-100 ">
-            <div class="row p-2" id="header_mobile">
-                <div>
-                    <a href="{{route('home.index')}}">
-                        <img class="logo" src="{{asset('home/custom/images/logo.jpg')}}" />
-                        <span class="company">Khăn lạnh toàn phát</span>
-                    </a>
+<header class="header">
+    <div class="header-wrapper">
+        <div id="top-bar" class="header-top hide-for-sticky nav-dark">
+            <div class="flex-row container">
+                <div class="flex-col hide-for-medium flex-left">
+                    <ul class="nav nav-left medium-nav-center nav-small  nav-">
+                        <li class="html custom html_topbar_left">Chào mừng bạn đến với Khanomi.vn</li>
+                    </ul>
                 </div>
-                <div class="hamber-menu">
-                    <div class="pollSlider">
-                        <div class="search d-flex align-items-center">
-                            <div class="sort-theme d-lg-block">
-                                <a href="javascript:;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                        width="29px" height="27px">
-                                        <defs>
-                                            <filter id="Filter_0">
-                                                <feFlood flood-color="rgb(18, 210, 136)" flood-opacity="1"
-                                                    result="floodOut">
-                                                </feFlood>
-                                                <feComposite operator="atop" in="floodOut" in2="SourceGraphic"
-                                                    result="compOut">
-                                                </feComposite>
-                                                <feBlend mode="normal" in="compOut" in2="SourceGraphic"></feBlend>
-                                            </filter>
-                                        </defs>
-                                        <g filter="url(#Filter_0)">
-                                            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
-                                                d="M11.500,3.000 L28.500,3.000 C28.776,3.000 29.000,3.224 29.000,3.500 C29.000,3.776 28.776,4.000 28.500,4.000 L11.500,4.000 C11.224,4.000 11.000,3.776 11.000,3.500 C11.000,3.224 11.224,3.000 11.500,3.000 Z">
-                                            </path>
-                                            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
-                                                d="M3.500,-0.000 C5.433,-0.000 7.000,1.567 7.000,3.500 C7.000,5.433 5.433,7.000 3.500,7.000 C1.567,7.000 -0.000,5.433 -0.000,3.500 C-0.000,1.567 1.567,-0.000 3.500,-0.000 Z">
-                                            </path>
-                                            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
-                                                d="M11.500,13.000 L28.500,13.000 C28.776,13.000 29.000,13.224 29.000,13.500 C29.000,13.776 28.776,14.000 28.500,14.000 L11.500,14.000 C11.224,14.000 11.000,13.776 11.000,13.500 C11.000,13.224 11.224,13.000 11.500,13.000 Z">
-                                            </path>
-                                            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
-                                                d="M3.500,10.000 C5.433,10.000 7.000,11.567 7.000,13.500 C7.000,15.433 5.433,17.000 3.500,17.000 C1.567,17.000 -0.000,15.433 -0.000,13.500 C-0.000,11.567 1.567,10.000 3.500,10.000 Z">
-                                            </path>
-                                            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
-                                                d="M11.500,23.000 L28.500,23.000 C28.776,23.000 29.000,23.224 29.000,23.500 C29.000,23.776 28.776,24.000 28.500,24.000 L11.500,24.000 C11.224,24.000 11.000,23.776 11.000,23.500 C11.000,23.224 11.224,23.000 11.500,23.000 Z">
-                                            </path>
-                                            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
-                                                d="M3.500,20.000 C5.433,20.000 7.000,21.567 7.000,23.500 C7.000,25.433 5.433,27.000 3.500,27.000 C1.567,27.000 -0.000,25.433 -0.000,23.500 C-0.000,21.567 1.567,20.000 3.500,20.000 Z">
-                                            </path>
-                                        </g>
-                                    </svg>
-                                </a>
-                                @php
-                                $search_by = $listCate->toArray()[0]['slug'];
-                                @endphp
-                                <div class="sort-by">
-                                    <ul>
-                                        @foreach($listCate as $cate)
-                                        <li data-sort="{{$cate->slug}}">{{ $cate->name }}</li>
-                                        @endforeach
-                                    </ul>
-                                    <input type="hidden" name="search_by" value="{{$search_by}}" />
+                <div class="flex-col hide-for-medium flex-center">
+                    <ul class="nav nav-center nav-small  nav-"></ul>
+                </div>
+                <div class="flex-col hide-for-medium flex-right">
+                    <ul class="nav top-bar-nav nav-right nav-small  nav-"></ul>
+                </div>
+                <div class="flex-col show-for-medium flex-grow">
+                    <ul class="nav nav-center nav-small mobile-nav  nav-">
+                        <li class="html custom html_topbar_left">Chào mừng bạn đến với Khanomi.vn</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="masthead" class="header-main hide-for-sticky nav-dark">
+            <div class="header-inner flex-row container logo-left medium-logo-center" role="navigation">
+                <div id="logo" class="flex-col logo">
+                    <a href=""
+                        title="Sản xuất khăn lạnh, bao tăm,.. giá rẻ nhất thị trường – khanomi.vn - Chuyên sản xuất khăn lạnh, bao tăm, ..giá rẻ nhất thị trường"
+                        rel="home">
+                        <img width="246" height="92" src="{{asset('/home/custom/images/logo.png')}}"
+                            class="header-logo-dark lazyloaded"
+                            alt="Sản xuất khăn lạnh, bao tăm,.. giá rẻ nhất thị trường – khanomi.vn"></a>
+                </div>
+                <div class="flex-col show-for-medium flex-left">
+                    <ul class="mobile-nav nav nav-left ">
+                        <li class="nav-icon has-icon">
+                            <a href="#" data-open="#main-menu" data-pos="left" data-bg="main-menu-overlay" data-color=""
+                                class="is-small" aria-label="Menu" aria-controls="main-menu" aria-expanded="false">
+                                <i class="fas fa-bars"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex-col hide-for-medium flex-left flex-grow">
+                    <ul class="header-nav header-nav-main nav nav-left  nav-uppercase">
+                        <li class="header-block">
+                            <div class="header-block-block-1">
+                                <div class="row row-small" id="row-1055226980">
+                                    <div class="col medium-8 small-12 large-8">
+                                        <div class="col-inner">
+                                            <div class="gap-element clearfix"
+                                                style="display:block; height:auto; padding-top:22px"></div>
+                                            <div class="searchform-wrapper ux-search-box relative is-normal">
+                                                <form role="search" method="get" class="searchform" action="">
+                                                    <div class="flex-row relative">
+                                                        <div class="flex-col search-form-categories"> <select
+                                                                class="search_categories resize-select mb-0"
+                                                                name="product_cat" style="width: 54.657px;">
+                                                                <option value="" selected="selected">All</option>
+                                                                <option value="bao-dua-bao-muong-quyen-order">Bao đũa -
+                                                                    Bao muỗng - Quyển order</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="flex-col flex-grow">
+                                                            <label class="screen-reader-text"
+                                                                for="woocommerce-product-search-field-0">Tìm
+                                                                kiếm:
+                                                            </label>
+                                                            <input type="search" id="woocommerce-product-search-field-0"
+                                                                class="search-field mb-0"
+                                                                placeholder="Tìm kiếm sản phẩm..." value="" name=""
+                                                                autocomplete="off">
+                                                            <input type="hidden" name="post_type" value="product">
+                                                        </div>
+                                                        <div class="flex-col">
+                                                            <button type="submit" value="Tìm kiếm"
+                                                                class="ux-search-submit submit-button secondary button icon mb-0 justify-content-center align-items-center d-flex">
+                                                                <i class="fa fa-search"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="live-search-results text-left z-top">
+                                                        <div class="autocomplete-suggestions"
+                                                            style="position: absolute; display: none; max-height: 300px; z-index: 9999;">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col medium-4 small-12 large-4">
+                                        <div class="col-inner">
+                                            <div class="gap-element clearfix"
+                                                style="display:block; height:auto; padding-top:17px"></div>
+                                            <div class="icon-box featured-box icon-box-left text-left">
+                                                <div class="icon-box-img" style="width: 20px">
+                                                    <div class="icon">
+                                                        <div class="icon-inner">
+                                                            <i class="fa fa-phone"></i>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="icon-box-text last-reset">
+                                                    <p><strong><span style="color: #fffcfc; font-size: 80%;">Gọi đặt
+                                                                hàng</span></strong></p>
+                                                    <p><strong><span style="font-size: 150%; color: red;">0912 27 26
+                                                                27</span></strong></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <form id="form-search">
-                                <input type="text" placeholder="Bạn tìm sản phẩm gì?" name="search_key"
-                                    class="search-key" autocomplete="off" autocorrect="off">
-                                <div class="search_list">
-                                    <ul>
-                                    </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex-col hide-for-medium flex-right">
+                    <ul class="header-nav header-nav-main nav nav-right  nav-uppercase"></ul>
+                </div>
+                <div class="flex-col show-for-medium flex-right">
+                    <ul class="mobile-nav nav nav-right ">
+                        <li class="cart-item has-icon">
+                            <a href="" class="header-cart-link off-canvas-toggle nav-top-link is-small"
+                                data-open="#cart-popup" data-class="off-canvas-cart" title="Giỏ hàng" data-pos="right">
+                                <i class="fas fa-shopping-basket"></i>
+                            </a>
+                            <div id="cart-popup" class="mfp-hide widget_shopping_cart">
+                                <div class="cart-popup-inner inner-padding">
+                                    <div class="cart-popup-title text-center">
+                                        <h4 class="uppercase">Giỏ hàng</h4>
+                                        <div class="is-divider"></div>
+                                    </div>
+                                    <div class="widget_shopping_cart_content">
+                                        <p class="woocommerce-mini-cart__empty-message">Chưa có sản phẩm trong giỏ hàng.
+                                        </p>
+                                    </div>
+                                    <div class="cart-sidebar-content relative"></div>
                                 </div>
-                            </form>
-                        </div>
-                        <div>
-                            <ul class="main-menu-small">
-                                <li class="@if(in_array(Route::currentRouteName(), ['home.index'])){{'active'}}@endif">
-                                    <a href="{{route('home.index')}}"><i class="fa fa-home"></i> Trang Chủ</a>
-                                </li>
-                                <li
-                                    class="dropdown @if(in_array(Route::currentRouteName(), ['home.products'])){{'active'}}@endif">
-                                    <a href="javascript:void(0)">Sản Phẩm <i class="fa fa-angle-down"></i></a>
-                                    @php
-                                    $current = '';
-                                    if(Route::currentRouteName() == 'home.products') {
-                                    $current = request()->route()->parameters()['slug'];
-                                    }
-                                    @endphp
-                                    <ul class="child-menu-small">
-                                        @foreach($listCate as $cate)
-                                        <li class="@if($current === $cate->slug) active @endif">
-                                            <a
-                                                href="{{route('home.products', ['slug' => $cate->slug])}}">{{$cate->name}}</a>
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                                <li
-                                    class="@if(in_array(Route::currentRouteName(), ['home.abountme'])){{'active'}}@endif">
-                                    <a href="{{route('home.aboutme.index')}}">Giới Thiệu</i></a>
-                                </li>
-                                <li
-                                    class="@if(in_array(Route::currentRouteName(), ['home.contact'])){{'active'}}@endif">
-                                    <a href="{{route('home.contact.index')}}">Liên Hệ</i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div id="pollSlider-button">
-                        <i class="fas fa-bars"></i>
-                    </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div class="col-xl-3 col-4 col-md-4 d-flex align-items-center" id="header_1">
-                <a href="{{route('home.index')}}">
-                    <img class="logo" src="{{asset('home/custom/images/logo.jpg')}}" />
-                    <span class="company">Khăn lạnh toàn phát</span>
-                </a>
-            </div>
-            <div class="col-xl-9 col-8 col-md-8 d-flex justify-content-between" id="header_2">
-                <div class="h-100 search d-flex align-items-center">
-                    <div class="sort-theme d-lg-block">
-                        <a href="javascript:;">
-                            <img src="{{asset('assets_common/images/meat.svg')}}" />
-                        </a>
-                        @php
-                        $search_by = $listCate->toArray()[0]['slug'];
-                        @endphp
-                        <div class="sort-by">
-                            <ul>
-                                @foreach($listCate as $cate)
-                                <li data-sort="{{$cate->slug}}">{{ $cate->name }}</li>
-                                @endforeach
+        </div>
+        <div id="wide-nav" class="header-bottom wide-nav hide-for-sticky nav-dark flex-has-center hide-for-medium">
+            <div class="flex-row container">
+                <div class="flex-col hide-for-medium flex-left">
+                    <ul class="nav header-nav header-bottom-nav nav-left d-block nav-size-medium nav-spacing-xlarge">
+                        <div id="mega-menu-wrap" class="ot-vm-click">
+                            <div id="mega-menu-title"> <i class="fas fa-bars"></i> Danh mục sản phẩm</div>
+                            <ul id="mega_menu" class="sf-menu sf-vertical sf-js-enabled sf-arrows"
+                                style="touch-action: pan-y;">
+                                <li id="menu-item-25"
+                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25"><a
+                                        href="/danh-muc/khan-lanh-mang-ngoc/">Khăn lạnh màng ngọc</a></li>
+                                <li id="menu-item-56"
+                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-56"><a
+                                        href="/danh-muc/khan-lanh-mang-ghep/">Khăn lạnh màng ghép</a></li>
+                                <li id="menu-item-72"
+                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-72"><a
+                                        href="/danh-muc/bao-tam/">Bao tăm</a></li>
+                                <li id="menu-item-66"
+                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-66"><a
+                                        href="/danh-muc/bao-dua-bao-muong-quyen-order/">Bao đũa – Bao muỗng – Quyển
+                                        Order</a></li>
+                                <li id="menu-item-67"
+                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-67"><a
+                                        href="/danh-muc/giay-ve-sinh/">Giấy vệ sinh</a></li>
+                                <li id="menu-item-73"
+                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-73"><a
+                                        href="/danh-muc/may-san-xuat-khan-lanh/">Máy sản xuất khăn lạnh</a></li>
+                                <li id="menu-item-65"
+                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-65"><a
+                                        href="/danh-muc/vai-khong-det-lam-khan-lanh/">Vải không dệt làm khăn lạnh</a>
+                                </li>
+                                <li id="menu-item-64"
+                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-64"><a
+                                        href="/danh-muc/nguyen-lieu-san-xuat-khan-lanh/">Nguyên liệu sản xuất khăn
+                                        lạnh</a></li>
                             </ul>
-                            <input type="hidden" name="search_by" value="{{$search_by}}" />
                         </div>
-                    </div>
-                    <form id="form-search">
-                        <input type="text" placeholder="Bạn tìm sản phẩm gì?" name="search_key" class="search-key"
-                            autocomplete="off" autocorrect="off">
-                        <div class="search_list">
-                            <ul>
-                            </ul>
-                        </div>
-                    </form>
+                    </ul>
                 </div>
-                <ul class="main-menu d-xl-flex align-items-center">
-                    <li class="@if(in_array(Route::currentRouteName(), ['home.index'])){{'active'}}@endif">
-                        <a href="{{route('home.index')}}"><i class="fa fa-home"></i> Trang Chủ</a>
-                    </li>
-                    <li class="dropdown @if(in_array(Route::currentRouteName(), ['home.products'])){{'active'}}@endif">
-                        <a href="javascript:void(0)">Sản Phẩm <i class="fa fa-angle-down"></i></a>
-                        @php
-                        $current = '';
-                        if(Route::currentRouteName() == 'home.products') {
-                        $current = request()->route()->parameters()['slug'];
-                        }
-                        @endphp
-                        <ul class="child-menu other p-0">
-                            @foreach($listCate as $cate)
-                            <li class="@if($current === $cate->slug) active @endif">
-                                <a href="{{route('home.products', ['slug' => $cate->slug])}}">{{$cate->name}}</a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    <li class="@if(in_array(Route::currentRouteName(), ['home.abountme'])){{'active'}}@endif">
-                        <a href="{{route('home.aboutme.index')}}">Giới Thiệu</i></a>
-                    </li>
-                    <li class="@if(in_array(Route::currentRouteName(), ['home.contact'])){{'active'}}@endif">
-                        <a href="{{route('home.contact.index')}}">Liên Hệ</i></a>
-                    </li>
-                </ul>
+                <div class="flex-col hide-for-medium flex-center">
+                    <ul class="nav header-nav header-bottom-nav nav-center  nav-size-medium nav-spacing-xlarge">
+                        <li id="menu-item-105"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-2 current_page_item active  menu-item-105">
+                            <a href="https://khanomi.vn/" class="nav-top-link">Trang chủ</a>
+                        </li>
+                        <li id="menu-item-101"
+                            class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-101"><a
+                                href="https://khanomi.vn/gioi-thieu/" class="nav-top-link">Giới thiệu</a></li>
+                        <li id="menu-item-106"
+                            class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-106"><a
+                                href="https://khanomi.vn/cua-hang/" class="nav-top-link">Sản phẩm</a></li>
+                        <li id="menu-item-104"
+                            class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-104"><a
+                                href="https://khanomi.vn/tuyen-dung/" class="nav-top-link">Tuyển dụng</a></li>
+                        <li id="menu-item-946"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-category  menu-item-946"><a
+                                href="https://khanomi.vn/tin-tuc/" class="nav-top-link">Tin tức</a></li>
+                        <li id="menu-item-103"
+                            class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-103"><a
+                                href="https://khanomi.vn/lien-he/" class="nav-top-link">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="flex-col hide-for-medium flex-right flex-grow">
+                    <ul class="nav header-nav header-bottom-nav nav-right  nav-size-medium nav-spacing-xlarge">
+                        <li class="cart-item has-icon has-dropdown"><a href="https://khanomi.vn/gio-hang/"
+                                title="Giỏ hàng" class="header-cart-link is-small"><span class="header-cart-title"> Giỏ
+                                    hàng </span> <i class="fas fa-shopping-basket" data-icon-label="0">
+                                </i> </a>
+                            <ul class="nav-dropdown nav-dropdown-default" style="">
+                                <li class="html widget_shopping_cart">
+                                    <div class="widget_shopping_cart_content">
+
+                                        <p class="woocommerce-mini-cart__empty-message">Chưa có sản phẩm trong giỏ hàng.
+                                        </p>
+
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<script>
-$('.dropdown').click(function() {
-    $(this).find('.child-menu').toggleClass('d-block');
-})
-</script>
+
+</header>
