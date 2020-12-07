@@ -1,7 +1,4 @@
 @extends('layouts.home.master')
-@section('css')
-<link rel="stylesheet" href="{{ asset('home/custom/css/magiczoomplus.css')}}" />
-@endsection
 @section('content')
 <div class="div_breadcrumb">
     <div class="breadcrumb">
@@ -15,27 +12,13 @@
     </div>
 </div>
 <div class="container">
-    <div class="box_container">
+    <div class="box_container mb-2">
         <div class="div_info_product">
-            <div class="zoom_slick">
-                <a href="{{asset($product->image_url)}}" id="img_product" class="MagicZoom"
-                    data-options="expandZoomMode: off;">
-                    <figure class="mz-figure mz-hover-zoom mz-ready"><img src="{{asset($product->image_url)}}"
-                            alt="{{$category->name}}" style="max-width: 1200px; max-height: 1200px;">
-                        <div class="mz-lens"
-                            style="top: 0px; transform: translate(-10000px, -10000px); width: 284px; height: 284px;">
-                            <img src="http://dcstoredn.com/upload/sanpham/chevrolet-cruze-2016-2019-dcstoredn-0301.jpg"
-                                style="position: absolute; top: 0px; left: 0px; width: 583px; height: 583px; transform: translate(-111px, -1px);">
-                        </div>
-                        <!-- <div class="mz-hint mz-hint-hidden"><span class="mz-hint-message">Click to expand</span></div> -->
-                    </figure>
-                </a>
-                <div class="mini_img_product slick-initialized slick-slider" id="sl_hinhthem">
-                    <div aria-live="polite" class="slick-list draggable">
-                        <div class="slick-track" role="listbox"
-                            style="opacity: 1; width: 0px; transform: translate3d(0px, 0px, 0px);"></div>
-                    </div>
-                </div>
+
+            <div class="zoom_slick  mb-4">
+                <img id="zoom_img" src='{{asset($product->image_url)}}' alt="{{$product->name}}" />
+                <!-- <a href="{{asset($product->image_url)}}" class="MagicZoom"><img
+                        src="{{asset($product->image_url)}}"></a> -->
             </div>
             <ul class="info_product">
                 <li class="my-flex-between no-border-bottom">
@@ -91,4 +74,18 @@
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+<script type="text/javascript" src="{{ asset('home/custom/js/jquery.zoom.min.js')}}"></script>
+<script>
+$(document).ready(function() {
+    $('.zoom_slick img')
+        .wrap('<span class="zoom"></span>')
+        .parent()
+        .zoom({
+            magnify: 2,
+            // on: 'grab'
+        });
+});
+</script>
 @endsection
