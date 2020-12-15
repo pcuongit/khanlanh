@@ -12,21 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/hpbd/{hoten}', function($hoten) {
-    $arr = [
-        'nguyen-cong-minh' => "Nguyễn Công Minh",
-        'le-quang-khai' => 'Lê Quang Khải',
-        'nguyen-hong-son' => 'Nguyễn Hồng Sơn',
-        'kim-ngoc-tai' => 'Kim Ngọc Tài',
-        'le-minh-chuong' => 'Lê Minh Chương',
-        'nguyen-trong-nghia' => 'Nguyễn Trọng Nghĩa',
-        'nguyen-thai-thuy' => 'Nguyễn Thái Thụy',
-        'phan-trong-tuan' => 'Phan Trọng Tuấn',
-        'tu-trinh' => 'Tú Trinh'
-    ];
-    $hovaten = $arr[$hoten] ?? abort(404);
-    return view('external_page.index', compact('hovaten'));
-});
 Route::get('/', 'home\HomeController@index')->name('home.index');
 Route::get('/san-pham/{slug}', 'home\ProductController@index')->name('home.products');
 Route::get('/san-pham/{slug_cate}/{slug_product}','home\ProductController@detailProduct')->name('product.detail_product');

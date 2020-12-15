@@ -4361,7 +4361,7 @@ div.wpcf7 .wpcf7-submit:disabled {
 }
 #mega-menu-wrap {
     width: 100%;
-    background: #1d71ab;
+    background: #49860d;
     position: relative;
 }
 #mega-menu-title {
@@ -5990,21 +5990,6 @@ a.woof_start_filtering_btn2 {
         -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
-}
-@font-face {
-    font-family: "fl-icons";
-    font-display: block;
-    src: url(../../../themes/flatsome/assets/css/icons/fl-icons.eot);
-    src: url("../../../themes/flatsome/assets/css/icons/fl-icons.eot#iefix")
-            format("embedded-opentype"),
-        url(../../../themes/flatsome/assets/css/icons/fl-icons.woff2)
-            format("woff2"),
-        url(../../../themes/flatsome/assets/css/icons/fl-icons.ttf)
-            format("truetype"),
-        url(../../../themes/flatsome/assets/css/icons/fl-icons.woff)
-            format("woff"),
-        url("../../../themes/flatsome/assets/css/icons/fl-icons.svg#fl-icons")
-            format("svg");
 }
 html {
     font-family: sans-serif;
@@ -7899,8 +7884,6 @@ li.hide-title > a {
     display: table;
     z-index: 20;
     pointer-events: none;
-    height: 2.8em;
-    width: 2.8em;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
@@ -13249,10 +13232,6 @@ ul.menu > li.has-child,
 .widget .current > ul,
 .widget .current-cat-parent > ul {
     display: block;
-}
-.widget .current-cat > a {
-    color: #000;
-    font-weight: bolder;
 }
 .recent-blog-posts {
     padding: 10px 0 10px;

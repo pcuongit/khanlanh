@@ -17,11 +17,15 @@ class ProductController extends Controller
         $this->cateRepository = $cateRepository;
     }
     public function index($slug) {
+        $listCate = $this->cateRepository->getAll();
+        foreach ($listCate as $item) {
+            $item->count = $this->productRepository->countAllBySlug($item->slug);
+        }
         $category = $this->cateRepository->getBySlug($slug);
         if(!$category) abort(404);
         $products = $this->productRepository->getProductsByCategory($slug, 0);
         
-        return view('home.category', compact('products', 'category'));
+        return view('home.category', compact('products', 'category', 'listCate'));
     }
 
     public function detailProduct($slug_cate, $slug_product) {

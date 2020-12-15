@@ -35,7 +35,7 @@
     @yield('breadcrumb')
     <main id="main">
         <div class="content" role="main" class="content-area">
-            @include('home.renders.slider')
+            @yield('slider')
             @yield('content')
         </div>
     </main>

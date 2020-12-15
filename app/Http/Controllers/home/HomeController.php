@@ -20,8 +20,10 @@ class HomeController extends Controller
 
     public function index() {
         $listCate = $this->categoryRepository->getAll();
-        $firstCate = $this->categoryRepository->getFirst();
-        return view('home.index', compact('listCate', 'firstCate'));
+        foreach($listCate as $item) {
+            $item->products = $this->productRepository->getProductsByCategory_1($item->slug, 4);
+        }
+        return view('home.index', compact('listCate'));
     }
 
     public function ajaxGetProducts(Request $request) {

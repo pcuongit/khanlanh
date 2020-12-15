@@ -124,7 +124,9 @@ class ProductRepository extends EloquentRepository implements ProductInterface
     public function findProduct($id) {
         return $this->_model::find($id);
     }
-
+    public function getProductsByCategory_1($slug, $limit) {
+        return $this->_model::select('product.*', 'category.slug as slug_cate')->join('category', 'category.id', '=', 'product.id_category')->where('category.slug', $slug)->take($limit)->get();
+    }
     public function getProductsByCategory($slug, $page) {
         $limit = \Config::get('constant.limit_product');
         return $this->_model::select('product.*', 'category.slug as slug_cate')->join('category', 'category.id', '=', 'product.id_category')->where('category.slug', $slug)->skip($page * $limit)->limit($limit)->get();

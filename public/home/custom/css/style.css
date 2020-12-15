@@ -99,7 +99,7 @@ div.wpcf7-response-output {
 
 #mega-menu-wrap {
     width: 100%;
-    background: #1d71ab;
+    background: #49860d;
     position: relative;
 }
 
@@ -1673,10 +1673,10 @@ html {
 }
 .header-bg-color,
 .header-wrapper {
-    background-color: #a5d6d6;
+    background-color: #539414;
 }
 .header-bottom {
-    background-color: #a5d6d6;
+    background-color: #539414;
 }
 .header-main .nav > li > a {
     line-height: 16px;
@@ -1696,7 +1696,7 @@ html {
     }
 }
 .header-top {
-    background-color: #3b7979 !important;
+    background-color: #49860d !important;
 }
 .accordion-title.active,
 .has-icon-bg .icon .icon-inner,
@@ -2645,7 +2645,7 @@ form.checkout h3 {
 .label-popular.menu-item > a:after {
     content: "Popular";
 }
-</style > <style type="text/css" id="wp-custom-css" > .zalo {
+.zalo {
     display: block;
     position: fixed;
     z-index: 3;
@@ -2681,4 +2681,7 @@ form.checkout h3 {
     .post-sidebar {
         display: none !important;
     }
+}
+.mw-200 {
+    min-width: 200px;
 }
