@@ -35,7 +35,8 @@ class ProductController extends Controller
         $product = $this->productRepository->getProductsBySlug($slug_cate, $slug_product);
         if(!$product) abort(404);
 
-        return view('home.detail_product', compact('category', 'product'));
+        $randomProduct = $this->productRepository->getRamdomProduct();
+        return view('home.detail_product', compact('category', 'product', 'randomProduct'));
     }
 
     public function ajaxFindProduct(Request $request) {
@@ -57,4 +58,5 @@ class ProductController extends Controller
             'data' => $product->toArray()
         ]);
     }
+
 }

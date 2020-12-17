@@ -7,6 +7,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Config as Config;
+use Illuminate\Support\Facades\DB;
 class ProductRepository extends EloquentRepository implements ProductInterface
 
 {
@@ -145,5 +146,9 @@ class ProductRepository extends EloquentRepository implements ProductInterface
 
     public function countAllBySlug($slug) {
         return $this->_model::select('product.*', 'category.slug as slug_cate')->join('category', 'category.id', '=', 'product.id_category')->where('category.slug', $slug)->get()->count();
+    }
+
+    public function getRamdomProduct() {
+        return $this->_model::select('product.*', 'category.slug as slug_cate')->join('category', 'category.id', '=', 'product.id_category')->orderBy(DB::raw('RAND()'))->limit(8)->get();
     }
 }

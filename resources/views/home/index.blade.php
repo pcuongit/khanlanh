@@ -14,7 +14,7 @@
                     <div class="img has-hover x md-x lg-x y md-y lg-y" id="image_1254917957">
                         <div class="img-inner image-cover dark" style="padding-top:190%;">
                             <img width="287" height="485"
-                                src="https://khanomi.vn/wp-content/uploads/2019/07/banner-omi.jpg"
+                                src="{{asset($item->image_url)}}"
                                 sizes="(max-width: 287px) 100vw, 287px">
                         </div>
                     </div>
@@ -31,9 +31,8 @@
                             </li>
                         </ul>
                         <div class="tab-panels">
-                            <div class="panel active entry-content" id="tab_khăn-lạnh-màng-ngọc">
-                                <div
-                                    class="row large-columns-4 medium-columns- small-columns-2 row-small has-shadow row-box-shadow-2-hover">
+                            <div class="panel active entry-content">
+                                <div class="row large-columns-4 medium-columns- small-columns-2 row-small has-shadow row-box-shadow-2-hover">
                                     @foreach($item->products as $product)
                                     <div class="col">
                                         <div class="col-inner">

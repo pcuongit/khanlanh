@@ -25,7 +25,7 @@
             <td>
                 <div class="row">
                     <span class="design"
-                        style="background:url({{asset($value->image_url)}}) no-repeat center center;"></span>
+                        style="background:url({{asset($value->image_url)}}) no-repeat center center;width: 204px;height: 388px;"></span>
                 </div>
                 <div class="row hidden input_edit_{{$value->id}}">
                     <div class="custom-file w-250 mt-2">

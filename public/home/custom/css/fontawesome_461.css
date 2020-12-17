@@ -9,7 +9,7 @@
 .fa-fw,
 .fa-li {
     text-align: center;
-}
+}:
 .fa {
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
@@ -6808,7 +6808,7 @@ body.boxed .is-sticky-section {
         padding-top: 5px;
         padding-bottom: 5px;
         -ms-flex-positive: 0;
-        flex-grow: 0;
+        flex-grow: 1;
         width: 100%;
     }
 }
@@ -9381,7 +9381,7 @@ img.back-image,
     height: 100%;
     z-index: 1042;
     overflow: hidden;
-    position: fixed;
+    /* position: fixed; */
     background: #0b0b0b;
     opacity: 0;
     transition: opacity 0.25s;
@@ -9398,7 +9398,7 @@ img.back-image,
     width: 100%;
     height: 100%;
     z-index: 1043;
-    position: fixed;
+    /* position: fixed; */
     outline: none !important;
     -webkit-backface-visibility: hidden;
 }
@@ -9440,7 +9440,11 @@ img.back-image,
 .mfp-content-inner {
     box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
+.mfp-bg.mfp-ready {
+    position: fixed;
+}
 .mfp-ready .mfp-content {
+    position: fixed;
     opacity: 1;
     -ms-transform: translateY(0);
     transform: translateY(0);
@@ -15796,4 +15800,7 @@ tr.shipping span.amount {
     opacity: 0.6;
     font-size: 11px;
     text-transform: uppercase;
+}
+.mfp-close {
+    display: none;
 }
