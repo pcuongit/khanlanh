@@ -4,7 +4,7 @@
             <div class="flex-row container">
                 <div class="flex-col hide-for-medium flex-left">
                     <ul class="nav nav-left medium-nav-center nav-small  nav-">
-                        <li class="html custom html_topbar_left">Chào mừng bạn đến với Khanomi.vn</li>
+                        <li class="html custom html_topbar_left">Chào mừng bạn đến với khăn lạnh toàn phát</li>
                     </ul>
                 </div>
                 <div class="flex-col hide-for-medium flex-center">
@@ -15,7 +15,7 @@
                 </div>
                 <div class="flex-col show-for-medium flex-grow">
                     <ul class="nav nav-center nav-small mobile-nav  nav-">
-                        <li class="html custom html_topbar_left">Chào mừng bạn đến với Khanomi.vn</li>
+                        <li class="html custom html_topbar_left">Chào mừng bạn đến với khăn lạnh toàn phát</li>
                     </ul>
                 </div>
             </div>
@@ -28,14 +28,14 @@
                         rel="home">
                         <img width="246" height="92" src="{{asset('/home/custom/images/logo.png')}}"
                             class="header-logo-dark lazyloaded"
-                            alt="Sản xuất khăn lạnh, bao tăm,.. giá rẻ nhất thị trường – khanomi.vn"></a>
+                            alt="Sản xuất khăn lạnh, bao tăm,.. giá rẻ nhất thị trường – khanlanh.vn"></a>
                 </div>
                 <div class="flex-col show-for-medium flex-left">
                     <ul class="mobile-nav nav nav-left ">
                         <li class="nav-icon has-icon">
-                            <a href="#" data-open="#main-menu" data-pos="left" data-bg="main-menu-overlay" data-color=""
+                            <a href="#" id="open_menu" data-pos="left" data-bg="main-menu-overlay" data-color=""
                                 class="is-small" aria-label="Menu" aria-controls="main-menu" aria-expanded="false">
-                                <i class="fas fa-bars"></i>
+                                <i class="fas fa-bars" style="color: #fff"></i>
                             </a>
                         </li>
                     </ul>
@@ -52,12 +52,16 @@
                                             <div class="searchform-wrapper ux-search-box relative is-normal">
                                                 <form role="search" method="get" class="searchform" action="">
                                                     <div class="flex-row relative">
-                                                        <div class="flex-col search-form-categories"> <select
-                                                                class="search_categories resize-select mb-0"
+                                                        <div class="flex-col search-form-categories"> 
+                                                        <select class="search_categories resize-select mb-0"
                                                                 name="product_cat" style="width: 54.657px;">
-                                                                <option value="" selected="selected">All</option>
-                                                                <option value="bao-dua-bao-muong-quyen-order">Bao đũa -
-                                                                    Bao muỗng - Quyển order</option>
+                                                            <option value="" >all</option>
+                                                            @php
+                                                                $listCate = \App\Models\Category::get();
+                                                            @endphp
+                                                            @foreach($listCate as $cate)
+                                                            <option value="{{$cate->id}}">{{$cate->name}}</option>
+                                                            @endforeach   
                                                             </select>
                                                         </div>
                                                         <div class="flex-col flex-grow">
@@ -74,7 +78,7 @@
                                                         <div class="flex-col">
                                                             <button type="submit" value="Tìm kiếm"
                                                                 class="ux-search-submit submit-button secondary button icon mb-0 justify-content-center align-items-center d-flex">
-                                                                <i class="fa fa-search"></i>
+                                                                <i class="fa fa-search" style="color: #fff"></i>
                                                             </button>
                                                         </div>
                                                     </div>
@@ -103,8 +107,7 @@
                                                 <div class="icon-box-text last-reset">
                                                     <p><strong><span style="color: #fffcfc; font-size: 80%;">Gọi đặt
                                                                 hàng</span></strong></p>
-                                                    <p><strong><span style="font-size: 150%; color: red;">0912 27 26
-                                                                27</span></strong></p>
+                                                    <p><strong><span style="font-size: 150%; color: red;">0315 762 650</span></strong></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -115,14 +118,14 @@
                     </ul>
                 </div>
                 <div class="flex-col hide-for-medium flex-right">
-                    <ul class="header-nav header-nav-main nav nav-right  nav-uppercase"></ul>
+                    <ul class="header-nav header-nav-main nav nav-right nav-uppercase"></ul>
                 </div>
                 <div class="flex-col show-for-medium flex-right">
                     <ul class="mobile-nav nav nav-right ">
-                        <li class="cart-item has-icon">
+                        <!-- <li class="cart-item has-icon">
                             <a href="" class="header-cart-link off-canvas-toggle nav-top-link is-small"
                                 data-open="#cart-popup" data-class="off-canvas-cart" title="Giỏ hàng" data-pos="right">
-                                <i class="fas fa-shopping-basket"></i>
+                                <i class="fas fa-shopping-basket" style="color: #ffff"></i>
                             </a>
                             <div id="cart-popup" class="mfp-hide widget_shopping_cart">
                                 <div class="cart-popup-inner inner-padding">
@@ -137,7 +140,7 @@
                                     <div class="cart-sidebar-content relative"></div>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -150,33 +153,16 @@
                             <div id="mega-menu-title"> <i class="fas fa-bars"></i> Danh mục sản phẩm</div>
                             <ul id="mega_menu" class="sf-menu sf-vertical sf-js-enabled sf-arrows"
                                 style="touch-action: pan-y;">
-                                <li id="menu-item-25"
-                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25"><a
-                                        href="/danh-muc/khan-lanh-mang-ngoc/">Khăn lạnh màng ngọc</a></li>
-                                <li id="menu-item-56"
-                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-56"><a
-                                        href="/danh-muc/khan-lanh-mang-ghep/">Khăn lạnh màng ghép</a></li>
-                                <li id="menu-item-72"
-                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-72"><a
-                                        href="/danh-muc/bao-tam/">Bao tăm</a></li>
-                                <li id="menu-item-66"
-                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-66"><a
-                                        href="/danh-muc/bao-dua-bao-muong-quyen-order/">Bao đũa – Bao muỗng – Quyển
-                                        Order</a></li>
-                                <li id="menu-item-67"
-                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-67"><a
-                                        href="/danh-muc/giay-ve-sinh/">Giấy vệ sinh</a></li>
-                                <li id="menu-item-73"
-                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-73"><a
-                                        href="/danh-muc/may-san-xuat-khan-lanh/">Máy sản xuất khăn lạnh</a></li>
-                                <li id="menu-item-65"
-                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-65"><a
-                                        href="/danh-muc/vai-khong-det-lam-khan-lanh/">Vải không dệt làm khăn lạnh</a>
-                                </li>
-                                <li id="menu-item-64"
-                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-64"><a
-                                        href="/danh-muc/nguyen-lieu-san-xuat-khan-lanh/">Nguyên liệu sản xuất khăn
-                                        lạnh</a></li>
+                                @php
+                                    $listCate = \App\Models\Category::get();
+                                @endphp
+                                @foreach($listCate as $item)
+                                    <li class="menu-item menu-item-type-custom menu-item-object-custom">
+                                        <a href="{{ route('home.products', ['slug' => $item->slug]) }}">
+                                            {{$item->name}}
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </ul>
@@ -185,26 +171,20 @@
                     <ul class="nav header-nav header-bottom-nav nav-center  nav-size-medium nav-spacing-xlarge">
                         <li id="menu-item-105"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-2 current_page_item active  menu-item-105">
-                            <a href="https://khanomi.vn/" class="nav-top-link">Trang chủ</a>
+                            <a href="{{route('home.index')}}" class="nav-top-link">Trang chủ</a>
                         </li>
-                        <li id="menu-item-101"
-                            class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-101"><a
-                                href="https://khanomi.vn/gioi-thieu/" class="nav-top-link">Giới thiệu</a></li>
-                        <li id="menu-item-106"
-                            class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-106"><a
-                                href="https://khanomi.vn/cua-hang/" class="nav-top-link">Sản phẩm</a></li>
-                        <li id="menu-item-104"
-                            class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-104"><a
-                                href="https://khanomi.vn/tuyen-dung/" class="nav-top-link">Tuyển dụng</a></li>
-                        <li id="menu-item-946"
-                            class="menu-item menu-item-type-taxonomy menu-item-object-category  menu-item-946"><a
-                                href="https://khanomi.vn/tin-tuc/" class="nav-top-link">Tin tức</a></li>
-                        <li id="menu-item-103"
-                            class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-103"><a
-                                href="https://khanomi.vn/lien-he/" class="nav-top-link">Liên hệ</a></li>
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a
+                                href="{{route('home.aboutme.index')}}" class="nav-top-link">Giới thiệu</a></li>
+                        @php
+                            $firstCate = \App\Models\Category::first();
+                        @endphp
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a
+                                href="{{ route('home.products', ['slug' => $firstCate->slug]) }}" class="nav-top-link">Sản phẩm</a></li>
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a
+                                href="{{route('home.contact.index')}}" class="nav-top-link">Liên hệ</a></li>
                     </ul>
                 </div>
-                <div class="flex-col hide-for-medium flex-right flex-grow">
+                <!-- <div class="flex-col hide-for-medium flex-right flex-grow">
                     <ul class="nav header-nav header-bottom-nav nav-right  nav-size-medium nav-spacing-xlarge">
                         <li class="cart-item has-icon has-dropdown"><a href="https://khanomi.vn/gio-hang/"
                                 title="Giỏ hàng" class="header-cart-link is-small"><span class="header-cart-title"> Giỏ
@@ -223,9 +203,91 @@
                             </ul>
                         </li>
                     </ul>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</header>
+<div class="mfp-bg off-canvas off-canvas-left main-menu-overlay" id="sidebar_bg"></div>
+<div class="mfp-wrap mfp-auto-cursor off-canvas off-canvas-left" id="sidebar_bg_2" tabindex="-1" style="overflow: hidden auto;">
+    <div class="mfp-container mfp-s-ready mfp-inline-holder">
+        <div class="mfp-content">
+            <div id="main-menu" class="mobile-sidebar no-scrollbar">
+                <div class="sidebar-menu no-scrollbar ">
+                    <ul class="nav nav-sidebar  nav-vertical nav-uppercase">
+                        @php
+                            $firstCate = \App\Models\Category::first();
+                        @endphp
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home"><a href="" class="nav-top-link">Trang chủ</a></li>
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{route('home.aboutme.index')}}" class="nav-top-link">Giới thiệu</a></li>
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ route('home.products', ['slug' => $firstCate->slug]) }}" class="nav-top-link">Sản phẩm</a></li>
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{route('home.contact.index')}}" class="nav-top-link">Liên hệ</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+    <button title="Close (Esc)" type="button" class="mfp-close" id="close_menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+    </button>
+</div>
+<div class="mfp-bg off-canvas undefined off-canvas-left" id="filter_bg"></div>
+<div class="mfp-wrap mfp-auto-cursor off-canvas undefined off-canvas-left" id="filter_bg_2" tabindex="-1" style="overflow: hidden auto;">
+    <div class="mfp-container mfp-s-ready mfp-inline-holder">
+        <div class="mfp-content">
+            <div id="shop-sidebar" class="sidebar-inner col-inner">
+                <aside id="woocommerce_product_categories-2" class="widget woocommerce widget_product_categories">
+                    <span class="widget-title shop-sidebar">Danh mục sản phẩm</span>
+                    <div class="is-divider small"></div>
+                    <ul class="product-categories">
+                        @foreach($listCate as $cate)
+                        <li class="cat-item @if($cate->id === $category->id) {{'current-cat active'}} @endif">
+                            <a class="mw-200" href="{{route('home.products', ['slug' => $cate->slug])}}">{{$cate->name}}</a>
+                            <span class="count">({{$cate->count}})</span>
+                        </li>
+                        @endforeach
+                    </ul>
+                </aside>
+            </div>
+        </div>
+        <div class="mfp-preloader">Loading...</div>
+    </div>
+    <button title="Close (Esc)" type="button" class="mfp-close" id="close_filter">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+    </button>
+</div>
+<script>
+var mobileStatus = false;
+checkWidth();
+$( window ).resize(function() {
+    checkWidth();
+});
+function checkWidth() {
+    let width = $( window ).width();
+    if (width <= 849) {
+        mobileStatus = true;
+    } else {
+        mobileStatus = false;
+    }
+}
+function openMenu() {
+    if(mobileStatus) {
+        $('#sidebar_bg').toggleClass('mfp-ready')
+        $('#sidebar_bg_2').toggleClass('mfp-ready')
+        $('#sidebar_bg_2 button').toggleClass('d-block')
+    }
+}
 
-</header>
+$('#open_menu').on('click', function(e) {
+    openMenu();
+})
+$('#close_menu').on('click', function(e) {
+    openMenu();
+})
+</script>

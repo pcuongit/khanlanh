@@ -37,7 +37,7 @@ class CategoryRepository extends EloquentRepository implements CategoryInterface
             $image = $request->file('image_url');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $image_resize = Image::make($image);              
-            // $image_resize->resize(300, 300);
+            $image_resize->resize(204, 388);
             if (!file_exists($save_path)) {
                 mkdir($save_path, 666, true);
             }
@@ -79,7 +79,7 @@ class CategoryRepository extends EloquentRepository implements CategoryInterface
             $image = $request->file('image_url');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $image_resize = Image::make($image);              
-            // $image_resize->resize(300, 300);
+            $image_resize->resize(204, 388);
             if (!file_exists($save_path)) {
                 mkdir($save_path, 666, true);
             }

@@ -38,7 +38,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="image_url">Ảnh</label>
-                                <img class="design mb-3" alt="" src="{{asset('assets_common/images/no-image.png')}}"
+                                <img class="design mb-3" style="width: 204px;height: 388px;" alt="" src="{{asset('assets_common/images/no-image.png')}}"
                                     id="preview">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="customFile" name="image_url"

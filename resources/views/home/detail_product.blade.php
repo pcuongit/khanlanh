@@ -12,139 +12,31 @@
                     <span class="widget-title shop-sidebar">Có thể bạn thích</span>
                     <div class="is-divider small"></div>
                     <ul class="product_list_widget">
+                        @foreach($randomProduct as $item)
                         <li>
-                            <a href="https://khanomi.vn/san-pham/bao-dua-mau-03/">
+                            <a href="{{route('product.detail_product', ['slug_cate' => $item->slug_cate, 'slug_product' => $item->slug])}}">
                                 <img width="100" height="100"
-                                    src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                    data-src="https://khanomi.vn/wp-content/uploads/2019/07/38b3fb3cd505365b6f14-100x100.jpg"
+                                    src="{{asset($item->image_url)}}"
                                     class="lazy-load attachment-woocommerce_gallery_thumbnail size-woocommerce_gallery_thumbnail"
                                     alt="" srcset=""
-                                    data-srcset="https://khanomi.vn/wp-content/uploads/2019/07/38b3fb3cd505365b6f14-100x100.jpg 100w, https://khanomi.vn/wp-content/uploads/2019/07/38b3fb3cd505365b6f14-150x150.jpg 150w, https://khanomi.vn/wp-content/uploads/2019/07/38b3fb3cd505365b6f14-300x300.jpg 300w"
-                                    sizes="(max-width: 100px) 100vw, 100px"> <span class="product-title">Bao đũa - Mẫu
-                                    03</span>
-                            </a> <span class="amount">Liên hệ</span>
+                                    sizes="(max-width: 100px) 100vw, 100px"> 
+                                    <span class="product-title">{{$item->name}}</span>
+                            </a> 
+                            <!-- <span class="amount">Liên hệ</span> -->
+                            <del>
+                                <span class="woocommerce-Price-amount amount">
+                                    {{number_format($item->price)}}
+                                    <span class="woocommerce-Price-currencySymbol">₫</span>
+                                </span>
+                            </del> 
+                            <ins>
+                                <span class="woocommerce-Price-amount amount">
+                                    {{number_format($item->final_amount)}}
+                                    <span class="woocommerce-Price-currencySymbol">₫</span>
+                                </span>
+                            </ins>
                         </li>
-                        <li>
-                            <a href="https://khanomi.vn/san-pham/khan-lanh-man-ghep-mau-8/">
-                                <img width="100" height="100"
-                                    src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                    data-src="https://khanomi.vn/wp-content/uploads/2019/07/12.-100x100.jpg"
-                                    class="lazy-load attachment-woocommerce_gallery_thumbnail size-woocommerce_gallery_thumbnail"
-                                    alt="" srcset=""
-                                    data-srcset="https://khanomi.vn/wp-content/uploads/2019/07/12.-100x100.jpg 100w, https://khanomi.vn/wp-content/uploads/2019/07/12.-150x150.jpg 150w, https://khanomi.vn/wp-content/uploads/2019/07/12.-300x300.jpg 300w"
-                                    sizes="(max-width: 100px) 100vw, 100px"> <span class="product-title">Khăn lạnh màng
-                                    ghép - Mẫu 8</span>
-                            </a> <del><span class="woocommerce-Price-amount amount">500<span
-                                        class="woocommerce-Price-currencySymbol">₫</span></span></del> <ins><span
-                                    class="woocommerce-Price-amount amount">400<span
-                                        class="woocommerce-Price-currencySymbol">₫</span></span></ins>
-                        </li>
-                        <li>
-                            <a href="https://khanomi.vn/san-pham/khan-lanh-man-ghep-mau-6/">
-                                <img width="100" height="100"
-                                    src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                    data-src="https://khanomi.vn/wp-content/uploads/2019/07/11-1-100x100.jpg"
-                                    class="lazy-load attachment-woocommerce_gallery_thumbnail size-woocommerce_gallery_thumbnail"
-                                    alt="" srcset=""
-                                    data-srcset="https://khanomi.vn/wp-content/uploads/2019/07/11-1-100x100.jpg 100w, https://khanomi.vn/wp-content/uploads/2019/07/11-1-150x150.jpg 150w, https://khanomi.vn/wp-content/uploads/2019/07/11-1-300x300.jpg 300w"
-                                    sizes="(max-width: 100px) 100vw, 100px"> <span class="product-title">Khăn lạnh màng
-                                    ghép - Mẫu 6</span>
-                            </a> <del><span class="woocommerce-Price-amount amount">500<span
-                                        class="woocommerce-Price-currencySymbol">₫</span></span></del> <ins><span
-                                    class="woocommerce-Price-amount amount">400<span
-                                        class="woocommerce-Price-currencySymbol">₫</span></span></ins>
-                        </li>
-                        <li>
-                            <a href="https://khanomi.vn/san-pham/khan-lanh-man-ngoc-mau-8/">
-                                <img width="100" height="100"
-                                    src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                    data-src="https://khanomi.vn/wp-content/uploads/2019/07/12-100x100.jpg"
-                                    class="lazy-load attachment-woocommerce_gallery_thumbnail size-woocommerce_gallery_thumbnail"
-                                    alt="" srcset=""
-                                    data-srcset="https://khanomi.vn/wp-content/uploads/2019/07/12-100x100.jpg 100w, https://khanomi.vn/wp-content/uploads/2019/07/12-150x150.jpg 150w, https://khanomi.vn/wp-content/uploads/2019/07/12-300x300.jpg 300w"
-                                    sizes="(max-width: 100px) 100vw, 100px"> <span class="product-title">Khăn lạnh màng
-                                    ngọc - Mẫu 8</span>
-                            </a> <del><span class="woocommerce-Price-amount amount">400<span
-                                        class="woocommerce-Price-currencySymbol">₫</span></span></del> <ins><span
-                                    class="woocommerce-Price-amount amount">300<span
-                                        class="woocommerce-Price-currencySymbol">₫</span></span></ins>
-                        </li>
-                        <li>
-                            <a href="https://khanomi.vn/san-pham/khan-lanh-man-ngoc-mau-7/">
-                                <img width="100" height="100"
-                                    src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                    data-src="https://khanomi.vn/wp-content/uploads/2019/07/10-1-100x100.jpg"
-                                    class="lazy-load attachment-woocommerce_gallery_thumbnail size-woocommerce_gallery_thumbnail"
-                                    alt="" srcset=""
-                                    data-srcset="https://khanomi.vn/wp-content/uploads/2019/07/10-1-100x100.jpg 100w, https://khanomi.vn/wp-content/uploads/2019/07/10-1-150x150.jpg 150w, https://khanomi.vn/wp-content/uploads/2019/07/10-1-300x300.jpg 300w"
-                                    sizes="(max-width: 100px) 100vw, 100px"> <span class="product-title">Khăn lạnh màng
-                                    ngọc - Mẫu7</span>
-                            </a> <del><span class="woocommerce-Price-amount amount">400<span
-                                        class="woocommerce-Price-currencySymbol">₫</span></span></del> <ins><span
-                                    class="woocommerce-Price-amount amount">300<span
-                                        class="woocommerce-Price-currencySymbol">₫</span></span></ins>
-                        </li>
-                        <li>
-                            <a href="https://khanomi.vn/san-pham/khan-lanh-mang-ghep-mau-4/">
-                                <img width="100" height="100"
-                                    src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                    data-src="https://khanomi.vn/wp-content/uploads/2019/07/8-1-100x100.jpg"
-                                    class="lazy-load attachment-woocommerce_gallery_thumbnail size-woocommerce_gallery_thumbnail"
-                                    alt="" srcset=""
-                                    data-srcset="https://khanomi.vn/wp-content/uploads/2019/07/8-1-100x100.jpg 100w, https://khanomi.vn/wp-content/uploads/2019/07/8-1-150x150.jpg 150w, https://khanomi.vn/wp-content/uploads/2019/07/8-1-300x300.jpg 300w"
-                                    sizes="(max-width: 100px) 100vw, 100px"> <span class="product-title">Khăn lạnh màng
-                                    ghép - Mẫu 4</span>
-                            </a> <del><span class="woocommerce-Price-amount amount">500<span
-                                        class="woocommerce-Price-currencySymbol">₫</span></span></del> <ins><span
-                                    class="woocommerce-Price-amount amount">400<span
-                                        class="woocommerce-Price-currencySymbol">₫</span></span></ins>
-                        </li>
-                        <li>
-                            <a href="https://khanomi.vn/san-pham/chat-bao-quan-lam-khan-lanh/">
-                                <img width="100" height="100"
-                                    src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                    data-src="https://khanomi.vn/wp-content/uploads/2019/07/CHẤT-BẢO-QUẢN-100x100.jpg"
-                                    class="lazy-load attachment-woocommerce_gallery_thumbnail size-woocommerce_gallery_thumbnail"
-                                    alt="" srcset=""
-                                    data-srcset="https://khanomi.vn/wp-content/uploads/2019/07/CHẤT-BẢO-QUẢN-100x100.jpg 100w, https://khanomi.vn/wp-content/uploads/2019/07/CHẤT-BẢO-QUẢN-150x150.jpg 150w, https://khanomi.vn/wp-content/uploads/2019/07/CHẤT-BẢO-QUẢN-300x300.jpg 300w"
-                                    sizes="(max-width: 100px) 100vw, 100px"> <span class="product-title">Chất bảo quản
-                                    làm khăn lạnh</span>
-                            </a> <span class="amount">Liên hệ</span>
-                        </li>
-                        <li>
-                            <a href="https://khanomi.vn/san-pham/bao-nilong-dong-goi/">
-                                <img width="100" height="100"
-                                    src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                    data-src="https://khanomi.vn/wp-content/uploads/2019/07/BAO-NILONG-ĐÓNG-GÓI-100x100.jpg"
-                                    class="lazy-load attachment-woocommerce_gallery_thumbnail size-woocommerce_gallery_thumbnail"
-                                    alt="" srcset=""
-                                    data-srcset="https://khanomi.vn/wp-content/uploads/2019/07/BAO-NILONG-ĐÓNG-GÓI-100x100.jpg 100w, https://khanomi.vn/wp-content/uploads/2019/07/BAO-NILONG-ĐÓNG-GÓI-150x150.jpg 150w, https://khanomi.vn/wp-content/uploads/2019/07/BAO-NILONG-ĐÓNG-GÓI-300x300.jpg 300w"
-                                    sizes="(max-width: 100px) 100vw, 100px"> <span class="product-title">Bao nilong đóng
-                                    gói</span>
-                            </a> <span class="amount">Liên hệ</span>
-                        </li>
-                        <li>
-                            <a href="https://khanomi.vn/san-pham/vai-khong-det-lam-khan-lanh-mau-03/">
-                                <img width="100" height="100"
-                                    src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                    class="lazy-load attachment-woocommerce_gallery_thumbnail size-woocommerce_gallery_thumbnail"
-                                    alt="" srcset="">
-                                <span class="product-title">Vải không dệt
-                                    làm khăn lạnh - Mẫu 03</span>
-                            </a> <span class="amount">Liên hệ</span>
-                        </li>
-                        <li>
-                            <a href="https://khanomi.vn/san-pham/vai-khong-det-lam-khan-lanh-mau-02/">
-                                <img width="100" height="100"
-                                    src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
-                                    data-src="https://khanomi.vn/wp-content/uploads/2019/07/36617467_1674697082577867_2685546404834705408_n-100x100.jpg"
-                                    class="lazy-load attachment-woocommerce_gallery_thumbnail size-woocommerce_gallery_thumbnail"
-                                    alt="" srcset=""
-                                    data-srcset="https://khanomi.vn/wp-content/uploads/2019/07/36617467_1674697082577867_2685546404834705408_n-100x100.jpg 100w, https://khanomi.vn/wp-content/uploads/2019/07/36617467_1674697082577867_2685546404834705408_n-150x150.jpg 150w, https://khanomi.vn/wp-content/uploads/2019/07/36617467_1674697082577867_2685546404834705408_n-300x300.jpg 300w"
-                                    sizes="(max-width: 100px) 100vw, 100px">
-                                <span class="product-title"></span>
-                            </a> <span class="amount">Liên hệ</span>
-                        </li>
+                        @endforeach
                     </ul>
                 </aside>
             </div>
@@ -192,12 +84,6 @@
                                         </svg>
                                     </button>
                                 </figure>
-                                <div class="image-tools absolute bottom left z-3">
-                                    <a href="#product-zoom"
-                                        class="zoom-button button is-outline circle icon tooltip hide-for-small tooltipstered">
-                                        <i class="icon-expand"></i>
-                                    </a>
-                                </div>
                             </div>
                         </div>
                         <div class="product-info summary entry-summary col col-fit product-summary">
@@ -226,23 +112,25 @@
                             <div class="product-short-description">
                                 <p>{{$product->description}}</p>
                             </div>
-                            <form class="cart" action="" method="post" enctype="multipart/form-data">
+                            <button type="submit" style="background: #ff1515d1;font-weight: bold;" 
+                                    class="single_add_to_cart_button button alt">Liên Hệ</button>
+                            <!-- <form class="cart" action="" method="post" enctype="multipart/form-data">
                                 <div class="quantity buttons_added">
-                                    <input type="button" value="-" class="minus button is-form">
-                                    <label class="screen-reader-text" for="quantity_5fd8aec5e82e8">Khăn lạnh màng ngọc –
+                                    <input type="button" value="-" class="minus button is-form" id="minus_quantity">
+                                    <label class="screen-reader-text" for="">Khăn lạnh màng ngọc –
                                         Mẫu 03 số lượng</label>
-                                    <input type="number" id="quantity_5fd8aec5e82e8" class="input-text qty text"
-                                        step="1" min="1" max="9999" name="quantity" value="1" title="SL" size="4"
+                                    <input type="number" class="input-text qty text"
+                                        step="1" min="1" max="999999" name="quantity" value="1" title="SL" size="4"
                                         inputmode="numeric">
-                                    <input type="button" value="+" class="plus button is-form">
+                                    <input type="button" value="+" class="plus button is-form" id="plus_quantity">
                                 </div>
                                 <button type="submit" name="add-to-cart" value="1180"
                                     class="single_add_to_cart_button button alt">Thêm vào giỏ hàng</button>
-                            </form>
+                            </form> -->
                             <div class="product_meta">
                                 <span class="tagged_as">Từ khóa:
                                     <a href="{{route('product.index', ['slug' => $category->name])}}"
-                                        rel="tag">{{$category->name}}</a>
+                                        rel="tag">{{$product->name}}</a>
                                 </span>
                             </div>
                         </div>
@@ -254,5 +142,19 @@
 </div>
 @endsection
 @section('scripts')
-
+<script>
+    $('#minus_quantity').click(function() {
+        let el = $('[name=quantity]');
+        if(el.val() > 1) {
+            el.val(parseInt(el.val()) - 1);
+        } 
+        
+    })
+    $('#plus_quantity').click(function() {
+        let el = $('[name=quantity]');
+        if(el.val() < 999999) {
+            el.val(parseInt(el.val()) + 1);
+        } 
+    })
+</script>
 @endsection

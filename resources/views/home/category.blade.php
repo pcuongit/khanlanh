@@ -9,13 +9,15 @@
                     <span class="divider">/</span> {{$category->name}}
                 </nav>
             </div>
-            <div class="category-filtering category-filter-row show-for-medium"> <a href="#" data-open="#shop-sidebar"
-                    data-visible-after="true" data-pos="left" class="filter-button uppercase plain"> <i
-                        class="icon-menu"></i> <strong>Lọc</strong> </a>
+            <div class="category-filtering category-filter-row show-for-medium"> 
+                <a href="javascript:void(0)" id="open_sidebar" data-visible-after="true" data-pos="left" class="filter-button uppercase plain"> 
+                    <i class="fas fa-filter"></i> 
+                    <strong>Lọc</strong> 
+                </a>
                 <div class="inline-block"></div>
             </div>
         </div>
-        <div class="flex-col medium-text-center">
+        <!-- <div class="flex-col medium-text-center">
             <p class="woocommerce-result-count hide-for-medium"> Showing all 8 results</p>
             <form class="woocommerce-ordering" method="get"> <select name="orderby" class="orderby"
                     aria-label="Đơn hàng của cửa hàng">
@@ -25,8 +27,9 @@
                     <option value="date">Mới nhất</option>
                     <option value="price">Thứ tự theo giá: thấp đến cao</option>
                     <option value="price-desc">Thứ tự theo giá: cao xuống thấp</option>
-                </select> <input type="hidden" name="paged" value="1"></form>
-        </div>
+                    </select> <input type="hidden" name="paged" value="1">
+            </form>
+        </div> -->
     </div>
 </div>
 @endsection
@@ -114,4 +117,35 @@
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+<script>
+var mobileStatus = false;
+checkWidth();
+$( window ).resize(function() {
+    checkWidth();
+});
+function checkWidth() {
+    let width = $( window ).width();
+    if (width <= 849) {
+        mobileStatus = true;
+    } else {
+        mobileStatus = false;
+    }
+}
+function openFilter() {
+    if(mobileStatus) {
+        $('#filter_bg').toggleClass('mfp-ready')
+        $('#filter_bg_2').toggleClass('mfp-ready')
+        $('#filter_bg_2 button').toggleClass('d-block')
+    }
+}
+
+$('#open_sidebar').on('click', function(e) {
+    openFilter();
+})
+$('#close_filter').on('click', function(e) {
+    openFilter();
+})
+</script>
 @endsection
