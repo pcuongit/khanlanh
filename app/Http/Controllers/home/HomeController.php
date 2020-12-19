@@ -7,15 +7,19 @@ use Illuminate\Http\Request;
 use App\Repositories\Product\ProductInterface;
 use App\Repositories\Category\CategoryInterface;
 use Illuminate\Support\Facades\View;
+use App\Repositories\Banner\BannerInterface;
+
 
 class HomeController extends Controller
 {
     public $productRepository;
     public $categoryRepository;
-    public function __construct(ProductInterface $productRepository, CategoryInterface $categoryRepository)
+    public $bannerRepository;
+    public function __construct(ProductInterface $productRepository, CategoryInterface $categoryRepository,BannerInterface $bannerRepository)
     {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->bannerRepository = $bannerRepository;
     }
 
     public function index() {
@@ -23,7 +27,8 @@ class HomeController extends Controller
         foreach($listCate as $item) {
             $item->products = $this->productRepository->getProductsByCategory_1($item->slug, 4);
         }
-        return view('home.index', compact('listCate'));
+        $banners = $this->bannerRepository->getAll();
+        return view('home.index', compact('listCate', 'banners'));
     }
 
     public function ajaxGetProducts(Request $request) {

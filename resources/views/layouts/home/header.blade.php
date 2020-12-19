@@ -50,7 +50,7 @@
                                             <div class="gap-element clearfix"
                                                 style="display:block; height:auto; padding-top:22px"></div>
                                             <div class="searchform-wrapper ux-search-box relative is-normal">
-                                                <form role="search" method="get" class="searchform" action="">
+                                                <div class="searchform">
                                                     <div class="flex-row relative">
                                                         <div class="flex-col search-form-categories"> 
                                                         <select class="search_categories resize-select mb-0"
@@ -60,7 +60,7 @@
                                                                 $listCate = \App\Models\Category::get();
                                                             @endphp
                                                             @foreach($listCate as $cate)
-                                                            <option value="{{$cate->id}}">{{$cate->name}}</option>
+                                                            <option value="{{$cate->slug}}">{{$cate->name}}</option>
                                                             @endforeach   
                                                             </select>
                                                         </div>
@@ -71,12 +71,16 @@
                                                             </label>
                                                             <input type="search" id="woocommerce-product-search-field-0"
                                                                 class="search-field mb-0"
+                                                                name="search_input"
                                                                 placeholder="Tìm kiếm sản phẩm..." value="" name=""
                                                                 autocomplete="off">
                                                             <input type="hidden" name="post_type" value="product">
+                                                            <div class="search_result">
+                                                                <ul></ul>
+                                                            </div>
                                                         </div>
                                                         <div class="flex-col">
-                                                            <button type="submit" value="Tìm kiếm"
+                                                            <button type="button" id="search" value="Tìm kiếm"
                                                                 class="ux-search-submit submit-button secondary button icon mb-0 justify-content-center align-items-center d-flex">
                                                                 <i class="fa fa-search" style="color: #fff"></i>
                                                             </button>
@@ -87,7 +91,7 @@
                                                             style="position: absolute; display: none; max-height: 300px; z-index: 9999;">
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -244,7 +248,7 @@
                     <div class="is-divider small"></div>
                     <ul class="product-categories">
                         @foreach($listCate as $cate)
-                        <li class="cat-item @if($cate->id === $category->id) {{'current-cat active'}} @endif">
+                        <li class="cat-item @if(isset($category) && $cate->id === $category->id) {{'current-cat active'}} @endif">
                             <a class="mw-200" href="{{route('home.products', ['slug' => $cate->slug])}}">{{$cate->name}}</a>
                             <span class="count">({{$cate->count}})</span>
                         </li>
@@ -283,11 +287,26 @@ function openMenu() {
         $('#sidebar_bg_2 button').toggleClass('d-block')
     }
 }
-
 $('#open_menu').on('click', function(e) {
     openMenu();
 })
 $('#close_menu').on('click', function(e) {
     openMenu();
+})
+
+$('#mega-menu-title').on('click', function(e) {
+    $('#mega_menu').toggleClass('active');
+})
+$('#woocommerce-product-search-field-0').on('keyup', function(e) {
+    let slug_cate = $('[name=product_cat]').val();
+    let search_text = $('[name=search_input]').val();
+    if(e.keyCode === 13) {
+        search(slug_cate,search_text);
+    }
+})
+$('#search').on('click',function(e){
+    let slug_cate = $('[name=product_cat]').val();
+    let search_text = $('[name=search_input]').val();
+    search(slug_cate,search_text);
 })
 </script>

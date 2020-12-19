@@ -4357,6 +4357,7 @@ div.wpcf7 .wpcf7-submit:disabled {
 #wide-nav > .flex-row > .flex-left {
     width: 25%;
     min-width: 245px;
+    max-width: 260px;
     margin-right: 15px;
 }
 #mega-menu-wrap {

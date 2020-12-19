@@ -11,29 +11,30 @@ function hideSpinner() {
 function showSpinner() {
     $('#spinner').show();
 }
-function search(text, parent) {
-    if(text.length == 0) {
-        parent.find('.search_list').removeClass('active');
+function search(slug_cate, search_text) {
+    _searchDom =  $('.search_result');
+    if(search_text.length == 0) {
+        _searchDom.removeClass('active');
     } else {
         setupAjax();
         $.ajax({
             url: '/ajax/find-product',
             data: {
-                'slug_cate': parent.parent().find('.sort-theme [name=search_by]').val(),
-                'search_text': parent.find('[name=search_key]').val()
+                "slug_cate": slug_cate ?? null,                
+                "search_text": search_text ?? null, 
             },
             method: 'POST',
             success: function(result) {
-                parent.find('.search_list ul').html("");
+                _searchDom.find('ul').html("");
                 if(result.status === 200 && result.data.length > 0) {
                     for(let item of result.data) {
-                        parent.find('.search_list ul').append(`<li data-slug_cate="${item.slug_cate}" data-slug="${item.slug}" onClick="redirect('${item.slug_cate}','${item.slug}')">${item.name}</li>`);
+                        _searchDom.find('ul').append(`<li data-slug_cate="${item.slug_cate}" data-slug="${item.slug}" onClick="redirect('${item.slug_cate}','${item.slug}')">${item.name}</li>`);
                     }
                 } else {
-                    parent.find('.search_list ul').append(`<li>không có dữ liệu</li>`);
+                    _searchDom.find('ul').append(`<li style="text-align: center;">không có dữ liệu...</li>`);
                 }
-                if(!parent.find('.search_list').hasClass('active')) {
-                    parent.find('.search_list').addClass('active');
+                if(!_searchDom.hasClass('active')) {
+                    _searchDom.addClass('active');
                 }
             },
             error: function(data) {}

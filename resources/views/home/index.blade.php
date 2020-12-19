@@ -85,7 +85,7 @@
                                                         </span>
                                                     </div>
                                                     <div class="add-to-cart-button">
-                                                        <a href="javascript:void(0);" data-quantity="1"
+                                                        <a href="{{route('product.detail_product', ['slug_cate' => $item->slug, 'slug_product' => $product->slug])}}" data-quantity="1"
                                                             class="primary is-small mb-0 button product_type_simple add_to_cart_button ajax_add_to_cart is-flat"
                                                             data-product_id=""
                                                             aria-label="Thêm “{{$product->name}}” vào giỏ hàng"

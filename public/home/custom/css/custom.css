@@ -9,3 +9,39 @@
 .header-inner i {
     color: #446084;
 }
+#mega_menu.active {
+    display: block !important;
+}
+.hide {
+    display:none;
+}
+.search_result {
+    position: absolute;
+    background: #fff;
+    width: 89%;
+    top: 49px;
+    display: none;
+    border: 1px solid #c5bebe;
+}
+.search_result ul {
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+    list-style: none;
+}
+.search_result ul li {
+    padding: 5px 10px;
+    margin: 0px !important;
+    border-bottom: 1px dashed #afa2a2;
+    cursor: pointer;
+}
+.search_result.active {
+    display: block;
+}
+.search_result ul li:last-child {
+    border-bottom:  none;
+}
+.search_result ul li:hover {
+    background: #49860d;
+    color: #ffffff;
+}

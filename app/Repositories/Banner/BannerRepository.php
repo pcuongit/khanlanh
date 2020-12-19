@@ -37,7 +37,7 @@ class BannerRepository extends EloquentRepository implements BannerInterface
             $image = $request->file('image_url');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $image_resize = Image::make($image);              
-            $image_resize->resize(980, 400);
+            $image_resize->resize(852, 377);
             if (!file_exists($save_path)) {
                 mkdir($save_path, 666, true);
             }
@@ -79,7 +79,7 @@ class BannerRepository extends EloquentRepository implements BannerInterface
             $image = $request->file('image_url');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $image_resize = Image::make($image);              
-            $image_resize->resize(980, 400);
+            $image_resize->resize(852,377);
             if (!file_exists($save_path)) {
                 mkdir($save_path, 666, true);
             }

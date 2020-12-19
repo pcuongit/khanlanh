@@ -42,11 +42,13 @@ class ProductController extends Controller
     public function ajaxFindProduct(Request $request) {
         $slug_cate = $request->input('slug_cate');
         $search_text = $request->input('search_text');
-        $category = $this->cateRepository->getBySlug($slug_cate);
-        if(!$category) return response()->json([
-            'status' => 404,
-            'message' => "not found"
-        ]);
+        if($slug_cate) {
+            $category = $this->cateRepository->getBySlug($slug_cate);
+            if(!$category) return response()->json([
+                'status' => 404,
+                'message' => "not found"
+            ]);
+        }
         $product = $this->productRepository->searchProductsBySlug($slug_cate, $search_text);
         if(!$product) return response()->json([
             'status' => 404,

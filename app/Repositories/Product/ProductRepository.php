@@ -38,7 +38,7 @@ class ProductRepository extends EloquentRepository implements ProductInterface
             $image = $request->file('image_url');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $image_resize = Image::make($image);              
-            // $image_resize->resize(300, 300);
+            $image_resize->resize(650, 400);
             if (!file_exists($save_path)) {
                 mkdir($save_path, 666, true);
             }
@@ -89,7 +89,7 @@ class ProductRepository extends EloquentRepository implements ProductInterface
             $image = $request->file('image_url');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $image_resize = Image::make($image);              
-            // $image_resize->resize(300, 300);
+            $image_resize->resize(650, 400);
             if (!file_exists($save_path)) {
                 mkdir($save_path, 666, true);
             }
