@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Giao diện web mẫu, template website bán hàng đẹp | Sapo Web</title>
+    <title>@yield('title', 'Khăn Lạnh Toàn Phát')</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="description" content="">
     <meta name="keyword" content="">

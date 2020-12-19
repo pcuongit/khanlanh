@@ -30,7 +30,7 @@
                 <div class="row hidden input_edit_{{$value->id}}">
                     <div class="custom-file w-250 mt-2">
                         <input type="file" class="custom-file-input" id="customFile" name="image_url"
-                            accept="image/png,image/jpg,image/svg">
+                            accept="image/*">
                         <label class="custom-file-label" for="customFile">chọn ảnh</label>
                     </div>
                 </div>

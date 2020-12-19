@@ -23,7 +23,7 @@
         <div id="masthead" class="header-main hide-for-sticky nav-dark">
             <div class="header-inner flex-row container logo-left medium-logo-center" role="navigation">
                 <div id="logo" class="flex-col logo">
-                    <a href=""
+                    <a href="{{route('home.index')}}"
                         title="Sản xuất khăn lạnh, bao tăm,.. giá rẻ nhất thị trường – khanomi.vn - Chuyên sản xuất khăn lạnh, bao tăm, ..giá rẻ nhất thị trường"
                         rel="home">
                         <img width="246" height="92" src="{{asset('/home/custom/images/logo.png')}}"

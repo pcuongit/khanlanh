@@ -71,6 +71,8 @@ function animateSave(object) {
     if (object.status === 200) {
         successAnimation(object.message);
         $('#btn_create').toggleClass('hidden');
+        $('#btn_cancel_form').toggleClass('hidden');
+        $('#btn_save').toggleClass('hidden');
         $("#form_create").slideUp("slow");
         $("#box_button_create").toggleClass("mb-4")
         $("#box_button_create>#bg_box").toggleClass("card")

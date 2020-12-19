@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{asset('admin/img/logo/logo.png')}}" rel="icon">
-    <title>@yield('title')</title>
+    <title>@yield('title', 'Admin Page')</title>
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('admin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('admin/css/ruang-admin.min.css') }}" rel="stylesheet">

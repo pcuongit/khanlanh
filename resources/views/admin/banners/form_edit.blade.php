@@ -22,7 +22,7 @@
         <img class="design mb-3" src="{{asset($banner->image_url)}}" alt="" id="preview">
         <div class="custom-file">
             <input type="file" class="custom-file-input" id="customFile" name="image_url"
-                accept="image/png,image/jpg,image/svg" onChange="loadFile(event, 'preview')">
+                accept="image/*" onChange="loadFile(event, 'preview')">
             <label class="custom-file-label" for="customFile">chọn ảnh</label>
         </div>
     </div>

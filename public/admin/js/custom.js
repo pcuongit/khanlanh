@@ -3,7 +3,8 @@ function resetForm(id) {
     $("#"+id).find("textarea").val("");
     $("#"+id).find("select").val("");
     $("#"+id).find(".custom-file-label").text("");
-    $("#"+id).find("img").removeAttr("src"); 
+    $("#"+id).find("img").attr("src", '/assets_common/images/no-image.png'); 
+    $('.is-valid').removeClass('is-invalid');
 }
 function autoCloseAlert(id) {
     if (!$('#' + id).first().is(":hidden")) {
