@@ -17,4 +17,5 @@ interface ProductInterface
     public function searchProductsBySlug($slug_cate, $search_text);
     public function countAllBySlug($slug);
     public function getRamdomProduct();
+    public function getRamdomProductByCate($slug_cate);
 }

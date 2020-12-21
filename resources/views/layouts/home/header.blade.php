@@ -222,10 +222,18 @@
                         @php
                             $firstCate = \App\Models\Category::first();
                         @endphp
-                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home"><a href="" class="nav-top-link">Trang chủ</a></li>
-                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{route('home.aboutme.index')}}" class="nav-top-link">Giới thiệu</a></li>
-                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ route('home.products', ['slug' => $firstCate->slug]) }}" class="nav-top-link">Sản phẩm</a></li>
-                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{route('home.contact.index')}}" class="nav-top-link">Liên hệ</a></li>
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home">
+                            <a href="{{route('home.index')}}" class="nav-top-link">Trang chủ</a>
+                        </li>
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                            <a href="{{route('home.aboutme.index')}}" class="nav-top-link">Giới thiệu</a>
+                        </li>
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                            <a href="{{ route('home.products', ['slug' => $firstCate->slug]) }}" class="nav-top-link">Sản phẩm</a>
+                        </li>
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                            <a href="{{route('home.contact.index')}}" class="nav-top-link">Liên hệ</a>
+                        </li>
                     </ul>
                 </div>
             </div>

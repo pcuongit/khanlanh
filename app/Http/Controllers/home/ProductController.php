@@ -36,7 +36,8 @@ class ProductController extends Controller
         if(!$product) abort(404);
 
         $randomProduct = $this->productRepository->getRamdomProduct();
-        return view('home.detail_product', compact('category', 'product', 'randomProduct'));
+        $randomProductBySlug = $this->productRepository->getRamdomProductByCate($slug_cate);
+        return view('home.detail_product', compact('category', 'product', 'randomProduct', 'randomProductBySlug'));
     }
 
     public function ajaxFindProduct(Request $request) {

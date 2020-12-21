@@ -151,4 +151,10 @@ class ProductRepository extends EloquentRepository implements ProductInterface
     public function getRamdomProduct() {
         return $this->_model::select('product.*', 'category.slug as slug_cate')->join('category', 'category.id', '=', 'product.id_category')->orderBy(DB::raw('RAND()'))->limit(8)->get();
     }
+
+    public function getRamdomProductByCate($slug_cate) {
+        return $this->_model::select('product.*', 'category.slug as slug_cate')
+        ->where('category.slug', $slug_cate)
+        ->join('category', 'category.id', '=', 'product.id_category')->orderBy(DB::raw('RAND()'))->limit(4)->get();
+    }
 }
